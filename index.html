@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NovaPixel Agency — We Design. We Build. We Grow Your Digital Presence. Premium creative digital agency for UI/UX, web, mobile, branding, SEO, and AI automation." />
+  <meta name="description" content="Stackly Agency — We Design. We Build. We Grow Your Digital Presence. Premium creative digital agency for UI/UX, web, mobile, branding, SEO, and AI automation." />
   <meta name="keywords" content="digital agency, UI UX design, web development, mobile apps, branding, SEO, digital marketing, AI automation" />
-  <meta name="author" content="NovaPixel Agency" />
-  <meta property="og:title" content="NovaPixel Agency — Premium Creative Digital Agency" />
+  <meta name="author" content="Stackly Agency" />
+  <meta property="og:title" content="Stackly Agency — Premium Creative Digital Agency" />
   <meta property="og:description" content="We Design. We Build. We Grow Your Digital Presence." />
   <meta property="og:type" content="website" />
-  <title>NovaPixel Agency — Premium Creative Digital Agency</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <title>Stackly Agency — Premium business digital Agency</title>
   <style>
     /* ============ DESIGN TOKENS ============ */
     :root{
@@ -36,7 +37,8 @@
     }
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-    body{font-family:var(--font);color:var(--text);background:var(--bg);overflow-x:hidden;line-height:1.6}
+    html,body{overflow-x:hidden;max-width:100%}
+    body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.6}
     body.lock{overflow:hidden}
     a{text-decoration:none;color:inherit}
     ul{list-style:none}
@@ -68,8 +70,8 @@
     /* ============ NAVBAR ============ */
     .navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:18px 0;transition:all .4s var(--ease)}
     .navbar.scrolled{background:rgba(248,250,252,.85);backdrop-filter:blur(20px);box-shadow:0 4px 30px rgba(17,24,39,.06);padding:12px 0}
-    .nav-inner{max-width:var(--container);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
-    .logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;letter-spacing:-.5px}
+    .nav-inner{max-width:var(--container);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;letter-spacing:-.5px;flex-shrink:0;min-width:0}
     .logo-mark{width:38px;height:38px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;font-weight:900;box-shadow:0 6px 20px rgba(124,58,237,.35);transition:transform .4s var(--ease)}
     .logo:hover .logo-mark{transform:rotate(180deg) scale(1.05)}
     .logo-text span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -95,7 +97,7 @@
     .btn-light:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
 
     /* ============ HAMBURGER ============ */
-    .hamburger{display:none;flex-direction:column;gap:5px;padding:8px;z-index:1001}
+    .hamburger{display:none;flex-direction:column;gap:5px;padding:8px;z-index:1001;flex-shrink:0}
     .hamburger span{width:26px;height:3px;background:var(--primary);border-radius:3px;transition:all .35s var(--ease)}
     .hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
     .hamburger.active span:nth-child(2){opacity:0}
@@ -135,7 +137,7 @@
     .hero-stat .num{font-size:32px;font-weight:800;color:var(--primary)}
     .hero-stat .num span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     .hero-stat .label{font-size:13px;color:var(--muted);font-weight:500}
-    .hero-visual{position:relative}
+    .hero-visual{position:relative;max-width:100%}
     .hero-card-main{background:var(--card);border-radius:24px;padding:28px;box-shadow:var(--shadow-lg);transform:perspective(1000px) rotateY(-8deg) rotateX(3deg);transition:transform .6s var(--ease);border:1px solid rgba(255,255,255,.6)}
     .hero-card-main:hover{transform:perspective(1000px) rotateY(0) rotateX(0)}
     .hero-card-main img{border-radius:16px;width:100%;aspect-ratio:4/3;object-fit:cover}
@@ -282,7 +284,7 @@
     .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.08)}
     .footer-brand .logo{color:#fff;margin-bottom:20px}
     .footer-brand p{font-size:15px;line-height:1.7;margin-bottom:24px;max-width:320px}
-    .footer-social{display:flex;gap:12px}
+    .footer-social{display:flex;gap:12px;flex-wrap:wrap}
     .footer-social a{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .3s}
     .footer-social a:hover{background:var(--grad);color:#fff;transform:translateY(-4px)}
     .footer-col h4{color:#fff;font-size:16px;font-weight:700;margin-bottom:20px}
@@ -295,10 +297,10 @@
     .footer-bottom a{transition:color .3s}
     .footer-bottom a:hover{color:var(--accent)}
     .footer-newsletter{display:flex;gap:8px;margin-top:16px}
-    .footer-newsletter input{flex:1;padding:12px 16px;border-radius:30px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#fff;font-size:14px;outline:none;transition:border-color .3s}
+    .footer-newsletter input{flex:1;min-width:0;padding:12px 16px;border-radius:30px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#fff;font-size:14px;outline:none;transition:border-color .3s}
     .footer-newsletter input:focus{border-color:var(--accent)}
     .footer-newsletter input::placeholder{color:rgba(255,255,255,.4)}
-    .footer-newsletter button{padding:12px 20px;border-radius:30px;background:var(--grad);color:#fff;font-weight:600;font-size:14px;transition:transform .3s}
+    .footer-newsletter button{padding:12px 20px;border-radius:30px;background:var(--grad);color:#fff;font-weight:600;font-size:14px;transition:transform .3s;flex-shrink:0}
     .footer-newsletter button:hover{transform:translateY(-2px)}
 
     /* ============ BACK TO TOP ============ */
@@ -342,14 +344,18 @@
       .float-card{display:none}
       .nav-inner{padding:0 16px}
       .container{padding:0 16px}
+      .logo img{height:100px !important}
     }
+
+    .logo img{height:120px;width:auto;}
+    
   </style>
 </head>
 <body>
   <!-- Loading Screen -->
   <div id="loader">
     <div class="loader-ring"></div>
-    <div class="loader-text">NovaPixel</div>
+    <div class="loader-text">STACKLY</div>
   </div>
 
   <!-- Custom Cursor -->
@@ -360,8 +366,7 @@
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="index.html" class="logo">
-        <div class="logo-mark">N</div>
-        <div class="logo-text">Nova<span>Pixel</span></div>
+        <img src="./gallery/stackly-violet.webp" alt="Stackly Logo" class="class-logo-img">
       </a>
       <div class="nav-links">
         <a href="index.html" class="active">Home</a>
@@ -372,7 +377,7 @@
       </div>
       <div class="nav-cta">
         <a href="login.html" class="login-link">Login</a>
-        <a href="signup.html" class="btn btn-primary">Get Started</a>
+        <a href="signup.html" class="btn btn-primary">signup</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -410,7 +415,7 @@
       <div class="hero-content">
         <div class="hero-badge reveal"><span class="dot"></span> Available for new projects</div>
         <h1 class="reveal">We Design. We Build. <span class="grad">We Grow</span> Your Digital Presence.</h1>
-        <p class="reveal">NovaPixel is a creative digital agency crafting premium websites, mobile apps, and brand experiences that drive measurable growth for ambitious companies worldwide.</p>
+        <p class="reveal">stackly is a creative digital agency crafting premium websites, mobile apps, and brand experiences that drive measurable growth for ambitious companies worldwide.</p>
         <div class="hero-actions reveal">
           <a href="services.html" class="btn btn-primary">Explore Services <span>→</span></a>
           <a href="portfolio.html" class="btn btn-outline">View Portfolio</a>
@@ -452,13 +457,13 @@
     <div class="container">
       <div class="intro-grid">
         <div class="intro-visual reveal left">
-          <img src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" alt="NovaPixel team working in the studio" loading="lazy" />
+          <img src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Stackly team working in the studio" loading="lazy" />
           <div class="play">▶</div>
         </div>
         <div class="intro-text reveal right">
           <div class="section-tag">Who We Are</div>
           <h2>A Creative Studio Built for the Digital Age</h2>
-          <p>Founded in 2018, NovaPixel Agency brings together designers, developers, and strategists to build digital experiences that matter. We blend art with technology to help brands stand out and scale up.</p>
+          <p>Founded in 2018, Stackly Agency brings together designers, developers, and strategists to build digital experiences that matter. We blend art with technology to help brands stand out and scale up.</p>
           <p>From early-stage startups to established enterprises, we partner with teams who want more than just a website — they want a digital presence that converts visitors into loyal customers.</p>
           <div class="intro-features">
             <div class="intro-feat"><div class="check">✓</div><span>Award-winning design team</span></div>
@@ -603,7 +608,7 @@
           <div class="portfolio-overlay">
             <div class="view">↗</div>
             <div class="cat">AI Automation</div>
-            <h3>NovaAI Chatbot</h3>
+            <h3>stacklyAI Chatbot</h3>
           </div>
         </div>
       </div>
@@ -618,7 +623,7 @@
     <div class="container">
       <div class="why-grid">
         <div class="why-text reveal left">
-          <div class="section-tag">Why NovaPixel</div>
+          <div class="section-tag">Why Stackly</div>
           <h2 style="font-size:clamp(26px,3.5vw,38px);font-weight:800;margin-bottom:20px">Why Brands Choose Us Over the Rest</h2>
           <p style="color:var(--muted);margin-bottom:28px">We don't just build websites — we engineer digital growth machines. Every project is backed by research, strategy, and obsessive attention to detail.</p>
           <a href="contact.html" class="btn btn-primary">Start Your Project <span>→</span></a>
@@ -692,7 +697,7 @@
             <div class="test-slide">
               <div class="test-card">
                 <div class="stars">★★★★★</div>
-                <p class="quote">"NovaPixel transformed our outdated website into a conversion machine. Our leads tripled within the first quarter after launch. The team is incredibly responsive and talented."</p>
+                <p class="quote">"Stackly transformed our outdated website into a conversion machine. Our leads tripled within the first quarter after launch. The team is incredibly responsive and talented."</p>
                 <div class="person">
                   <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=120" alt="Sarah Mitchell" loading="lazy" />
                   <div style="text-align:left"><div class="name">Sarah Mitchell</div><div class="role">CEO, ShopWave</div></div>
@@ -702,7 +707,7 @@
             <div class="test-slide">
               <div class="test-card">
                 <div class="stars">★★★★★</div>
-                <p class="quote">"The mobile app NovaPixel built for us hit 100K downloads in the first month. Their attention to UX detail is unmatched. I'd recommend them to any serious founder."</p>
+                <p class="quote">"The mobile app Stackly built for us hit 100K downloads in the first month. Their attention to UX detail is unmatched. I'd recommend them to any serious founder."</p>
                 <div class="person">
                   <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=120" alt="James Carter" loading="lazy" />
                   <div style="text-align:left"><div class="name">James Carter</div><div class="role">Founder, FitTrack</div></div>
@@ -712,7 +717,7 @@
             <div class="test-slide">
               <div class="test-card">
                 <div class="stars">★★★★★</div>
-                <p class="quote">"From branding to website to SEO, NovaPixel handled everything seamlessly. They feel like an extension of our own team. Our brand finally looks as premium as our product."</p>
+                <p class="quote">"From branding to website to SEO, Stackly handled everything seamlessly. They feel like an extension of our own team. Our brand finally looks as premium as our product."</p>
                 <div class="person">
                   <img src="https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=120" alt="Priya Sharma" loading="lazy" />
                   <div style="text-align:left"><div class="name">Priya Sharma</div><div class="role">CMO, Vertex Corp</div></div>
@@ -781,20 +786,31 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="logo">
-            <div class="logo-mark">N</div>
-            <div class="logo-text" style="color:#fff">Nova<span>Pixel</span></div>
+            <img src="./gallery/stackly-violet.webp" alt="Stackly Logo" class="class-logo-img">
           </a>
           <p>We Design. We Build. We Grow Your Digital Presence. A creative digital agency helping brands thrive in the modern web.</p>
           <div class="footer-social">
-            <a href="#" aria-label="Twitter">𝕏</a>
-            <a href="#" aria-label="LinkedIn">in</a>
-            <a href="#" aria-label="Instagram">◎</a>
-            <a href="#" aria-label="Dribbble">●</a>
-          </div>
+                <a href="404.html" aria-label="X (Twitter)">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+                <a href="404.html" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <a href="404.html" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="404.html" aria-label="Dribbble">
+                    <i class="fa-brands fa-dribbble"></i>
+                </a>
+         </div>
         </div>
         <div class="footer-col">
-          <h4>Company</h4>
+          <h4>Quick Links</h4>
           <ul>
+            <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
@@ -804,17 +820,18 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul>
-            <li><a href="services.html">UI/UX Design</a></li>
-            <li><a href="services.html">Web Development</a></li>
-            <li><a href="services.html">Mobile Apps</a></li>
-            <li><a href="services.html">SEO & Marketing</a></li>
+            <li><a href="404.html">UI/UX Design</a></li>
+            <li><a href="404.html">Web Development</a></li>
+            <li><a href="404.html">Mobile Apps</a></li>
+            <li><a href="404.html">SEO & Marketing</a></li>
+            <li><a href="404.html">Graphic Design</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Get in Touch</h4>
           <ul class="footer-contact">
             <li><span class="icon">📍</span> 245 Innovation Drive, Suite 400, San Francisco, CA 94107</li>
-            <li><span class="icon">✉</span> hello@novapixel.agency</li>
+            <li><span class="icon">✉</span> hello@stackly.agency</li>
             <li><span class="icon">☎</span> +1 (415) 555-0192</li>
           </ul>
           <div class="footer-newsletter">
@@ -824,11 +841,11 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <div>© 2025 NovaPixel Agency. All rights reserved.</div>
+        <div>© 2025 Stackly Agency. All rights reserved.</div>
         <div style="display:flex;gap:20px">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Cookies</a>
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Cookies</a>
         </div>
       </div>
     </div>

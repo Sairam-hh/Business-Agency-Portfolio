@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="About NovaPixel Agency — Our story, mission, vision, core values, team, timeline, awards, and office gallery. A premium creative digital agency." />
-  <title>About — NovaPixel Agency</title>
+  <meta name="description" content="About stackly Agency — Our story, mission, vision, core values, team, timeline, awards, and office gallery. A premium creative digital agency." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <title>About — Stackly Agency</title>
   <style>
     :root{
       --primary:#111827;--secondary:#7C3AED;--accent:#06B6D4;--highlight:#F43F5E;
@@ -266,16 +267,23 @@
       .values-grid,.team-grid,.awards-grid,.gallery-grid{grid-template-columns:1fr}
       .gallery-item.tall{grid-row:span 1}
     }
+
+    .logo img{
+      height:100px;
+      width:auto;
+    }
   </style>
 </head>
 <body>
-  <div id="loader"><div class="loader-ring"></div><div class="loader-text">NovaPixel</div></div>
+  <div id="loader"><div class="loader-ring"></div><div class="loader-text">STACKLY</div></div>
   <div class="cursor-dot"></div><div class="cursor-ring"></div>
 
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="index.html" class="logo"><div class="logo-mark">N</div><div class="logo-text">Nova<span>Pixel</span></div></a>
-      <div class="nav-links">
+          <a href="index.html" class="logo">
+            <img src="./gallery/stackly-violet.webp" alt="Stackly Logo" class="class-logo-img">
+          </a>  
+    <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html" class="active">About</a>
         <a href="services.html">Services</a>
@@ -284,7 +292,7 @@
       </div>
       <div class="nav-cta">
         <a href="login.html" class="login-link">Login</a>
-        <a href="signup.html" class="btn btn-primary">Get Started</a>
+        <a href="signup.html" class="btn btn-primary">signup</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -319,13 +327,13 @@
     <div class="container">
       <div class="story-grid">
         <div class="story-visual reveal left">
-          <img src="https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=800" alt="NovaPixel office" loading="lazy" />
+          <img src="https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=800" alt="stackly office" loading="lazy" />
           <div class="badge"><div class="y">2018</div><div class="l">Year Founded</div></div>
         </div>
         <div class="story-text reveal right">
           <div class="section-tag">Our Story</div>
           <h2>From a Two-Person Studio to a Global Digital Agency</h2>
-          <p>NovaPixel started in a small co-working space in San Francisco with just two founders, a laptop, and a bold vision: to make premium digital design accessible to growing brands. What began as a side project quickly turned into a full-fledged agency as word spread about our quality and speed.</p>
+          <p>Stackly started in a small co-working space in San Francisco with just two founders, a laptop, and a bold vision: to make premium digital design accessible to growing brands. What began as a side project quickly turned into a full-fledged agency as word spread about our quality and speed.</p>
           <p>Over seven years, we've grown into a 40-person team serving clients across 35 countries. We've shipped over 250 projects — from startup landing pages to enterprise-grade platforms — and picked up 12 industry awards along the way. But our mission hasn't changed: build digital experiences that genuinely move the needle for our clients.</p>
           <div class="story-signature">
             <img src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=100" style="width:54px;height:54px;border-radius:50%;object-fit:cover" alt="Founder" loading="lazy" />
@@ -382,7 +390,7 @@
     <div class="container">
       <div class="section-head">
         <div class="section-tag">Our Team</div>
-        <h2>Meet the <span class="grad">Minds</span> Behind NovaPixel</h2>
+        <h2>Meet the <span class="grad">Minds</span> Behind Stackly</h2>
         <p>Talented specialists who turn ambitious ideas into digital reality.</p>
       </div>
       <div class="team-grid">
@@ -444,10 +452,10 @@
       <div class="section-head">
         <div class="section-tag" style="background:rgba(124,58,237,.2);color:var(--accent)">Our Journey</div>
         <h2>Company <span class="grad">Timeline</span></h2>
-        <p>Milestones that shaped NovaPixel into the agency it is today.</p>
+        <p>Milestones that shaped Stackly into the agency it is today.</p>
       </div>
       <div class="timeline-wrap">
-        <div class="tl-item reveal left"><div class="tl-content"><div class="year">2018</div><h3>The Beginning</h3><p>NovaPixel founded by Alex Chen and Maya Rodriguez in a San Francisco co-working space with one client.</p></div><div class="tl-dot"></div></div>
+        <div class="tl-item reveal left"><div class="tl-content"><div class="year">2018</div><h3>The Beginning</h3><p>Stackly founded by Alex Chen and Maya Rodriguez in a San Francisco co-working space with one client.</p></div><div class="tl-dot"></div></div>
         <div class="tl-item reveal right"><div class="tl-content"><div class="year">2019</div><h3>First Major Award</h3><p>Won the Awwwards Site of the Day for our work with a fintech startup. Team grows to 8 people.</p></div><div class="tl-dot"></div></div>
         <div class="tl-item reveal left"><div class="tl-content"><div class="year">2020</div><h3>Going Remote-First</h3><p>Transitioned to a fully distributed team across 5 time zones. Shipped 60 projects in a single year.</p></div><div class="tl-dot"></div></div>
         <div class="tl-item reveal right"><div class="tl-content"><div class="year">2021</div><h3>Mobile Practice Launched</h3><p>Expanded into native mobile development. Hit 150+ total projects and opened our first physical studio.</p></div><div class="tl-dot"></div></div>
@@ -501,7 +509,7 @@
     <div class="container">
       <div class="section-head">
         <div class="section-tag">Our Space</div>
-        <h2>Inside the <span class="grad">NovaPixel Studio</span></h2>
+        <h2>Inside the <span class="grad">Stackly Studio</span></h2>
         <p>Where creativity meets productivity — take a peek inside our working environment.</p>
       </div>
       <div class="gallery-grid">
@@ -518,7 +526,7 @@
   <!-- CTA -->
   <section class="section-pad" style="padding-bottom:100px">
     <div class="cta-band reveal zoom">
-      <h2>Want to Join the NovaPixel Family?</h2>
+      <h2>Want to Join the Stackly Family?</h2>
       <p>Whether you're looking to partner with us or join our team, we'd love to hear from you.</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
         <a href="contact.html" class="btn btn-primary">Get in Touch →</a>
@@ -532,15 +540,69 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="logo"><div class="logo-mark">N</div><div class="logo-text" style="color:#fff">Nova<span>Pixel</span></div></a>
+          <a href="index.html" class="logo">
+            <img src="./gallery/stackly-violet.webp" alt="Stackly Logo" class="class-logo-img">
+          </a>
           <p>We Design. We Build. We Grow Your Digital Presence. A creative digital agency helping brands thrive in the modern web.</p>
-          <div class="footer-social"><a href="#">𝕏</a><a href="#">in</a><a href="#">◎</a><a href="#">●</a></div>
+          <div class="footer-social">
+                <a href="404.html" aria-label="X (Twitter)">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+                <a href="404.html" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <a href="404.html" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="404.html" aria-label="Dribbble">
+                    <i class="fa-brands fa-dribbble"></i>
+                </a>
+         </div>
         </div>
-        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-        <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">UI/UX Design</a></li><li><a href="services.html">Web Development</a></li><li><a href="services.html">Mobile Apps</a></li><li><a href="services.html">SEO & Marketing</a></li></ul></div>
-        <div class="footer-col"><h4>Get in Touch</h4><ul class="footer-contact"><li><span class="icon">📍</span> 245 Innovation Drive, Suite 400, San Francisco, CA 94107</li><li><span class="icon">✉</span> hello@novapixel.agency</li><li><span class="icon">☎</span> +1 (415) 555-0192</li></ul><div class="footer-newsletter"><input type="email" placeholder="Your email" /><button>Subscribe</button></div></div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="404.html">UI/UX Design</a></li>
+            <li><a href="404.html">Web Development</a></li>
+            <li><a href="404.html">Mobile Apps</a></li>
+            <li><a href="404.html">SEO & Marketing</a></li>
+            <li><a href="404.html">Graphic Design</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <ul class="footer-contact">
+            <li><span class="icon">📍</span> 245 Innovation Drive, Suite 400, San Francisco, CA 94107</li>
+            <li><span class="icon">✉</span> hello@stackly.agency</li>
+            <li><span class="icon">☎</span> +1 (415) 555-0192</li>
+          </ul>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
+            <button>Subscribe</button>
+          </div>
+        </div>
       </div>
-      <div class="footer-bottom"><div>© 2025 NovaPixel Agency. All rights reserved.</div><div style="display:flex;gap:20px"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookies</a></div></div>
+      <div class="footer-bottom">
+        <div>© 2025 Stackly Agency. All rights reserved.</div>
+        <div style="display:flex;gap:20px">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Cookies</a>
+        </div>
+      </div>
     </div>
   </footer>
 

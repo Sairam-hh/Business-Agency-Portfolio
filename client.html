@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NovaPixel Agency Client Dashboard — view your projects, tasks, messages, and files." />
-  <title>Client Dashboard — NovaPixel Agency</title>
+  <meta name="description" content="Stackly Agency Client Dashboard — view your projects, tasks, messages, and files." />
+  <title>Client Dashboard — Stackly Agency</title>
   <style>
     :root{
       --primary:#111827;--secondary:#7C3AED;--accent:#06B6D4;--highlight:#F43F5E;
@@ -171,13 +171,22 @@
       .topbar h1{font-size:18px}
       .profile-card .p-info{grid-template-columns:1fr}
     }
+
+    .logo img{
+      height:100px;
+      width:auto;
+    }
   </style>
 </head>
 <body class="dark">
   <aside class="sidebar" id="sidebar">
     <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">×</button>
-    <div class="sidebar-brand"><div class="logo-mark">N</div>Nova<span>Pixel</span></div>
-    <nav class="sidebar-nav">
+      <div class="sidebar-brand">
+            <a  class="logo">
+              <img src="./gallery/stackly-violet.webp" alt="Stackly Logo" class="class-logo-img">
+            </a>   
+        </div>    
+      <nav class="sidebar-nav">
       <div class="nav-section">Menu</div>
       <a href="#" class="nav-link active" data-section="dashboard"><span class="icon">📊</span> Dashboard</a>
       <a href="#" class="nav-link" data-section="projects"><span class="icon">📁</span> My Projects</a>

@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NovaPixel Agency services — UI/UX design, web development, mobile apps, branding, SEO, digital marketing, AI automation, content creation, and pricing packages." />
-  <title>Services — NovaPixel Agency</title>
+  <meta name="description" content="Stackly Agency services — UI/UX design, web development, mobile apps, branding, SEO, digital marketing, AI automation, content creation, and pricing packages." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <title>Services — Stackly Agency</title>
   <style>
     :root{
       --primary:#111827;--secondary:#7C3AED;--accent:#06B6D4;--highlight:#F43F5E;
@@ -233,16 +234,23 @@
       .services-grid{grid-template-columns:1fr}
       .process-grid{grid-template-columns:1fr}
     }
+
+    .logo img{
+      height:100px;
+      width:auto;
+    }
   </style>
 </head>
 <body>
-  <div id="loader"><div class="loader-ring"></div><div class="loader-text">NovaPixel</div></div>
+  <div id="loader"><div class="loader-ring"></div><div class="loader-text">STACKLY</div></div>
   <div class="cursor-dot"></div><div class="cursor-ring"></div>
 
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="index.html" class="logo"><div class="logo-mark">N</div><div class="logo-text">Nova<span>Pixel</span></div></a>
-      <div class="nav-links">
+            <a href="index.html" class="logo">
+                <img src="./gallery/stackly-violet.webp" alt="Stackly Logo" class="class-logo-img">
+            </a>        
+        <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="services.html" class="active">Services</a>
@@ -251,7 +259,7 @@
       </div>
       <div class="nav-cta">
         <a href="login.html" class="login-link">Login</a>
-        <a href="signup.html" class="btn btn-primary">Get Started</a>
+        <a href="signup.html" class="btn btn-primary">signup</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -266,7 +274,7 @@
     <a href="contact.html">Contact</a>
     <div class="mobile-cta">
       <a href="login.html" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.2)">Login</a>
-      <a href="signup.html" class="btn btn-primary">Get Started</a>
+      <a href="signup.html" class="btn btn-primary">signup</a>
     </div>
   </aside>
 
@@ -447,15 +455,69 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="logo"><div class="logo-mark">N</div><div class="logo-text" style="color:#fff">Nova<span>Pixel</span></div></a>
+          <a href="index.html" class="logo">
+            <img src="./gallery/stackly-violet.webp" alt="Stackly Logo" class="class-logo-img">
+          </a>
           <p>We Design. We Build. We Grow Your Digital Presence. A creative digital agency helping brands thrive in the modern web.</p>
-          <div class="footer-social"><a href="#">𝕏</a><a href="#">in</a><a href="#">◎</a><a href="#">●</a></div>
+          <div class="footer-social">
+                <a href="404.html" aria-label="X (Twitter)">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+                <a href="404.html" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <a href="404.html" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="404.html" aria-label="Dribbble">
+                    <i class="fa-brands fa-dribbble"></i>
+                </a>
+         </div>
         </div>
-        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-        <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">UI/UX Design</a></li><li><a href="services.html">Web Development</a></li><li><a href="services.html">Mobile Apps</a></li><li><a href="services.html">SEO & Marketing</a></li></ul></div>
-        <div class="footer-col"><h4>Get in Touch</h4><ul class="footer-contact"><li><span class="icon">📍</span> 245 Innovation Drive, Suite 400, San Francisco, CA 94107</li><li><span class="icon">✉</span> hello@novapixel.agency</li><li><span class="icon">☎</span> +1 (415) 555-0192</li></ul><div class="footer-newsletter"><input type="email" placeholder="Your email" /><button>Subscribe</button></div></div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="404.html">UI/UX Design</a></li>
+            <li><a href="404.html">Web Development</a></li>
+            <li><a href="404.html">Mobile Apps</a></li>
+            <li><a href="404.html">SEO & Marketing</a></li>
+            <li><a href="404.html">Graphic Design</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <ul class="footer-contact">
+            <li><span class="icon">📍</span> 245 Innovation Drive, Suite 400, San Francisco, CA 94107</li>
+            <li><span class="icon">✉</span> hello@stackly.agency</li>
+            <li><span class="icon">☎</span> +1 (415) 555-0192</li>
+          </ul>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
+            <button>Subscribe</button>
+          </div>
+        </div>
       </div>
-      <div class="footer-bottom"><div>© 2025 NovaPixel Agency. All rights reserved.</div><div style="display:flex;gap:20px"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookies</a></div></div>
+      <div class="footer-bottom">
+        <div>© 2025 Stackly Agency. All rights reserved.</div>
+        <div style="display:flex;gap:20px">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Cookies</a>
+        </div>
+      </div>
     </div>
   </footer>
 
