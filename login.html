@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Log in — Meridian & Co.</title>
+<meta name="description" content="Sign in to your Meridian & Co. account to access your dashboard."/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#0a0c11;--surface:#11141c;--surface-2:#161a24;--line:rgba(255,255,255,.08);--text:#eef1f6;--muted:#8e97a8;--accent:#e5b567;--accent-2:#7c9cff}
+  body{background:var(--bg);color:var(--text);font-family:"Inter",sans-serif;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px;width:100%}
+  h1,h2,h3{font-family:"Fraunces",serif;letter-spacing:-.02em}
+  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:rgba(10,12,17,.6);border-bottom:1px solid var(--line)}
+  nav.top .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{font-family:"Fraunces",serif;font-size:20px}.brand span{color:var(--accent)}
+  .menu{display:flex;gap:32px}.menu a{font-size:14px;color:var(--muted)}.menu a:hover{color:var(--text)}
+  .cta{display:inline-flex;padding:10px 18px;border:1px solid var(--accent);color:var(--accent);border-radius:999px;font-size:13px;cursor:pointer;background:none;font-family:inherit}
+  .cta.solid{background:var(--accent);color:#0a0c11;border-color:var(--accent)}
+  .cta.ghost{border-color:var(--line);color:var(--muted)}
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px;background:radial-gradient(800px 400px at 30% 20%,rgba(229,181,103,.08),transparent 60%),radial-gradient(700px 400px at 80% 80%,rgba(124,156,255,.08),transparent 60%)}
+  .card{max-width:460px;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:40px}
+  .card h1{font-size:32px;margin:10px 0 8px}
+  .card>p{color:var(--muted);font-size:14px;margin-bottom:28px}
+  .field{margin-bottom:16px}
+  label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  input,select{width:100%;padding:14px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;color:var(--text);font-size:14px;font-family:inherit;transition:border-color .2s}
+  input:focus,select:focus{outline:0;border-color:var(--accent)}
+  .role-picker{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .role{padding:16px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;cursor:pointer;text-align:left;transition:all .2s;font-family:inherit;color:var(--text)}
+  .role:hover{border-color:rgba(229,181,103,.4)}
+  .role.selected{border-color:var(--accent);background:rgba(229,181,103,.08)}
+  .role b{display:block;font-size:14px;margin-bottom:4px}
+  .role span{font-size:12px;color:var(--muted)}
+  .submit{width:100%;margin-top:12px;padding:14px;background:var(--accent);color:#0a0c11;border:0;border-radius:12px;font-weight:600;cursor:pointer;font-family:inherit;font-size:14px;transition:filter .2s}
+  .submit:hover{filter:brightness(1.08)}
+  .alt{margin-top:20px;text-align:center;font-size:13px;color:var(--muted)}
+  .alt a{color:var(--accent)}
+  .err{color:#e57373;font-size:12px;margin-top:8px;display:none}
+  footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<nav class="top"><div class="container row">
+  <a href="index.html" class="brand">Meridian<span>&Co.</span></a>
+  <div class="menu"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="contact.html">Contact</a></div>
+  <a href="signup.html" class="cta">Sign up</a>
+</div></nav>
+
+<main>
+  <form class="card" id="loginForm">
+    <div class="eyebrow">Welcome back</div>
+    <h1>Log in to your dashboard</h1>
+    <p>Select your role and enter your credentials to continue.</p>
+
+    <div class="field">
+      <label>Role</label>
+      <div class="role-picker" id="roles">
+        <button type="button" class="role selected" data-role="client"><b>Client</b><span>View engagements & milestones</span></button>
+        <button type="button" class="role" data-role="admin"><b>Admin</b><span>Manage team, projects & billing</span></button>
+      </div>
+    </div>
+    <div class="field"><label>Email</label><input type="email" id="email" placeholder="you@company.com" required></div>
+    <div class="field"><label>Password</label><input type="password" id="pw" placeholder="••••••••" required></div>
+    <div class="err" id="err">Please fill in all fields.</div>
+    <button type="submit" class="submit">Continue to dashboard →</button>
+    <div class="alt">Don't have an account? <a href="signup.html">Sign up</a></div>
+  </form>
+</main>
+
+<footer>© 2026 Meridian & Co.</footer>
+
+<script>
+let role='client';
+document.querySelectorAll('#roles .role').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#roles .role').forEach(x=>x.classList.remove('selected'));
+  b.classList.add('selected');
+  role=b.dataset.role;
+}));
+document.getElementById('loginForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const em=document.getElementById('email').value.trim();
+  const pw=document.getElementById('pw').value.trim();
+  if(!em||!pw){document.getElementById('err').style.display='block';return;}
+  try{localStorage.setItem('meridian_user',JSON.stringify({email:em,role}));}catch(_){}
+  window.location.href = role==='admin' ? 'admin-dashboard.html' : 'client-dashboard.html';
+});
+</script>
+</body></html>

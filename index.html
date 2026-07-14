@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meridian & Co. — Business Agency Portfolio</title>
+<meta name="description" content="Meridian & Co. is a boutique business consulting agency helping ambitious brands scale with strategy, design, and operations." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0a0c11;--surface:#11141c;--surface-2:#161a24;--line:rgba(255,255,255,.08);
+    --text:#eef1f6;--muted:#8e97a8;--accent:#e5b567;--accent-2:#7c9cff;
+    --grad:radial-gradient(1200px 600px at 20% 10%,rgba(229,181,103,.18),transparent 60%),
+           radial-gradient(900px 500px at 80% 30%,rgba(124,156,255,.15),transparent 60%),
+           linear-gradient(180deg,#0a0c11 0%,#0b0e15 100%);
+    --shadow:0 30px 80px -30px rgba(0,0,0,.6);
+  }
+  html,body{background:var(--bg);color:var(--text);font-family:"Inter",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:"Fraunces",serif;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+  .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:500}
+  /* NAV */
+  nav.top{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px);background:rgba(10,12,17,.6);border-bottom:1px solid var(--line)}
+  nav.top .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{font-family:"Fraunces",serif;font-size:20px;font-weight:600;letter-spacing:-.01em}
+  .brand span{color:var(--accent)}
+  .menu{display:flex;gap:32px}
+  .menu a{font-size:14px;color:var(--muted);transition:color .2s}
+  .menu a:hover,.menu a.active{color:var(--text)}
+  .cta{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid var(--accent);color:var(--accent);border-radius:999px;font-size:13px;font-weight:500;transition:all .3s}
+  .cta:hover{background:var(--accent);color:#0a0c11}
+  .cta.solid{background:var(--accent);color:#0a0c11}
+  .cta.solid:hover{background:#f0c982}
+  /* HERO */
+  .hero{position:relative;min-height:100vh;padding:140px 0 100px;overflow:hidden;background:var(--grad)}
+  #particles{position:absolute;inset:0;pointer-events:none;z-index:0}
+  .hero-grad{position:absolute;inset:-20%;z-index:0;background:conic-gradient(from 0deg at 50% 50%,rgba(229,181,103,.08),rgba(124,156,255,.08),rgba(229,181,103,.08));filter:blur(80px);animation:spin 30s linear infinite;opacity:.7}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+  .hero-copy .eyebrow{opacity:0;transform:translateY(20px);animation:rise .8s .1s ease-out forwards}
+  .hero-copy h1{font-size:clamp(42px,6vw,78px);margin:18px 0 24px;opacity:0;transform:translateY(30px);animation:rise 1s .3s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero-copy h1 em{font-style:italic;color:var(--accent);font-weight:400}
+  .hero-copy p{color:var(--muted);font-size:17px;max-width:520px;opacity:0;transform:translateY(20px);animation:rise .8s .55s ease-out forwards}
+  .hero-actions{margin-top:36px;display:flex;gap:14px;opacity:0;transform:translateY(20px);animation:rise .8s .75s ease-out forwards}
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+  .hero-visual{position:relative;perspective:1200px}
+  .tilt-card{position:relative;transform-style:preserve-3d;transition:transform .2s ease-out;opacity:0;animation:fadeIn 1s .8s ease-out forwards}
+  @keyframes fadeIn{to{opacity:1}}
+  .tilt-card .frame{border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#1a1f2b,#0f1219);border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;transform:translateZ(0)}
+  .tilt-card .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(229,181,103,.12);color:var(--accent);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px}
+  .tilt-card h3{font-size:26px;margin-bottom:8px}
+  .tilt-card .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+  .metric{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:16px;transform:translateZ(40px)}
+  .metric .n{font-family:"Fraunces",serif;font-size:24px;color:var(--accent)}
+  .metric .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+  .float-tag{position:absolute;padding:10px 16px;background:rgba(17,20,28,.9);border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--muted);backdrop-filter:blur(10px);transform:translateZ(80px)}
+  .float-tag.a{top:-16px;left:-24px}
+  .float-tag.b{bottom:-20px;right:-16px;color:var(--accent-2)}
+  /* SECTIONS */
+  section.block{padding:120px 0;position:relative}
+  .section-head{max-width:720px;margin-bottom:60px}
+  .section-head h2{font-size:clamp(32px,4vw,52px);margin:14px 0 16px}
+  .section-head p{color:var(--muted);font-size:16px}
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .svc{padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:20px;transition:transform .4s,border-color .3s}
+  .svc:hover{transform:translateY(-6px);border-color:rgba(229,181,103,.3)}
+  .svc .num{font-family:"Fraunces",serif;color:var(--accent);font-size:14px;letter-spacing:.15em;margin-bottom:20px}
+  .svc h3{font-size:22px;margin-bottom:10px}
+  .svc p{color:var(--muted);font-size:14px}
+  .stats-band{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stat{padding:48px 24px;text-align:center;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat .big{font-family:"Fraunces",serif;font-size:52px;color:var(--accent)}
+  .stat .lab{color:var(--muted);font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-top:6px}
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .quote{padding:36px;background:var(--surface-2);border:1px solid var(--line);border-radius:20px}
+  .quote p{font-family:"Fraunces",serif;font-size:20px;line-height:1.5;margin-bottom:20px}
+  .quote .who{color:var(--muted);font-size:13px}
+  .who b{color:var(--text);font-weight:500}
+  /* FOOTER */
+  footer{padding:60px 0 30px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+  footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr}
+    .services,.quotes,.stats-band{grid-template-columns:1fr 1fr}
+    .menu{display:none}
+  }
+
+  .site-footer{padding:70px 0 24px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.02))}
+  .foot-wrap{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--line)}
+  .foot-col h5{color:var(--text);font-family:"Fraunces",serif;font-size:14px;letter-spacing:.05em;margin-bottom:16px;font-weight:600}
+  .foot-col a{display:block;color:var(--muted);padding:4px 0;transition:color .2s;font-size:13px}
+  .foot-col a:hover{color:var(--accent)}
+  .brand-col .brand{font-family:"Fraunces",serif;font-size:22px;color:var(--text);display:inline-block;margin-bottom:12px}
+  .brand-col .brand span{color:var(--accent)}
+  .foot-tag{font-size:13px;line-height:1.6;max-width:280px;margin-bottom:20px}
+  .foot-addr{margin-top:8px;font-size:12px;color:var(--muted);opacity:.7}
+  .socials{display:flex;gap:10px}
+  .socials a{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--muted);transition:all .25s;padding:0}
+  .socials a:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+  .foot-bottom{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:var(--muted);opacity:.75}
+  .cta.ghost{border-color:var(--line);color:var(--muted)}
+  .cta.ghost:hover{color:var(--text);border-color:var(--text);background:transparent}
+  @media(max-width:900px){.foot-wrap{grid-template-columns:1fr 1fr}.foot-bottom{flex-direction:column;gap:6px;text-align:center}}
+</style>
+</head>
+<body>
+<nav class="top"><div class="container row">
+  <a href="index.html" class="brand">Meridian<span>&Co.</span></a>
+  <div class="menu">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    
+    <a href="contact.html">Contact</a>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <a href="login.html" class="cta ghost">Log in</a>
+    <a href="signup.html" class="cta">Sign up</a>
+    <a href="contact.html" class="cta solid">Start a project</a>
+  </div>
+</div></nav>
+
+<header class="hero">
+  <canvas id="particles"></canvas>
+  <div class="hero-grad" id="grad"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy" id="parallax">
+      <div class="eyebrow">Business Agency · Est. 2011</div>
+      <h1>Strategy, design & operations for brands with <em>quiet ambition.</em></h1>
+      <p>Meridian & Co. is a boutique consultancy that helps founders and enterprise teams turn complex business problems into clean, shippable outcomes.</p>
+      <div class="hero-actions">
+        <a href="portfolio.html" class="cta solid">View our work</a>
+        <a href="contact.html" class="cta">Book a discovery call</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="tilt-card" id="tilt">
+        <div class="float-tag a">● Live engagement</div>
+        <div class="frame">
+          <span class="badge">Case snapshot</span>
+          <h3>Northwind Retail</h3>
+          <p style="color:var(--muted);font-size:14px">Repositioned a 40-store retailer around a single digital-first commerce spine.</p>
+          <div class="metrics">
+            <div class="metric"><div class="n">+68%</div><div class="l">Revenue</div></div>
+            <div class="metric"><div class="n">-31%</div><div class="l">Ops cost</div></div>
+            <div class="metric"><div class="n">4.9★</div><div class="l">NPS</div></div>
+          </div>
+        </div>
+        <div class="float-tag b">Delivered Q2 · 2025</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">What we do</div>
+      <h2>Three practices, one operating rhythm.</h2>
+      <p>We work in tight, senior-led teams so decisions stay clean and calendars stay honest.</p>
+    </div>
+    <div class="services">
+      <div class="svc"><div class="num">01 / Strategy</div><h3>Business & brand strategy</h3><p>Market posture, pricing, go-to-market, and the narrative your team can actually repeat.</p></div>
+      <div class="svc"><div class="num">02 / Design</div><h3>Product & experience design</h3><p>Interfaces, identity systems, and end-to-end customer journeys built to scale.</p></div>
+      <div class="svc"><div class="num">03 / Operations</div><h3>Operations & delivery</h3><p>Process design, ops tooling, and interim leadership to keep momentum after launch.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="container">
+    <div class="stats-band">
+      <div class="stat"><div class="big">120+</div><div class="lab">Engagements delivered</div></div>
+      <div class="stat"><div class="big">14</div><div class="lab">Years operating</div></div>
+      <div class="stat"><div class="big">38</div><div class="lab">Senior consultants</div></div>
+      <div class="stat"><div class="big">4.9/5</div><div class="lab">Client satisfaction</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Client voice</div>
+      <h2>Work that partners return to.</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote"><p>“Meridian didn't just deliver a strategy deck — they stayed until the org actually operated differently.”</p><div class="who"><b>Amelia Chen</b> · COO, Northwind Retail</div></div>
+      <div class="quote"><p>“Rare combination of taste and rigor. Every recommendation was backed by a spreadsheet we could defend.”</p><div class="who"><b>Rahul Menon</b> · Founder, Coriander Foods</div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer"><div class="container foot-wrap">
+  <div class="foot-col brand-col">
+    <a href="index.html" class="brand">Meridian<span>&Co.</span></a>
+    <p class="foot-tag">Strategy, design & operations for brands with quiet ambition.</p>
+    <div class="socials" aria-label="Social links">
+      <a href="https://twitter.com/meridianco" target="_blank" rel="noopener" aria-label="Twitter"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.797l-5.32-6.51L4.8 22H1.54l8.03-9.17L1 2h6.94l4.82 5.94L18.244 2Zm-1.19 18h1.83L7.04 4H5.11l11.945 16Z"/></svg></a>
+      <a href="https://linkedin.com/company/meridianco" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21H9V9Z"/></svg></a>
+      <a href="https://instagram.com/meridianco" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://github.com/meridianco" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.78-.25.78-.55v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.7.08-.7 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.76.4-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.3-.52-1.48.11-3.08 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.83 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.6.23 2.78.11 3.08.74.8 1.19 1.82 1.19 3.08 0 4.41-2.7 5.38-5.26 5.67.41.35.77 1.05.77 2.12v3.14c0 .3.2.66.79.54A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+      <a href="https://dribbble.com/meridianco" target="_blank" rel="noopener" aria-label="Dribbble"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><path d="M3.5 10.5c5.5.5 12-.5 15.5-4M8 21c1-6 4.5-11 12-11.5M3 14c4-1 9 0 13 5"/></svg></a>
+    </div>
+  </div>
+  <div class="foot-col">
+    <h5>Company</h5>
+    <a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="contact.html">Contact</a>
+  </div>
+  <div class="foot-col">
+    <h5>Account</h5>
+    <a href="login.html">Log in</a><a href="signup.html">Sign up</a>
+  </div>
+  <div class="foot-col">
+    <h5>Contact</h5>
+    <a href="mailto:hello@meridian.co">hello@meridian.co</a><a href="tel:+14155550180">+1 (415) 555-0180</a>
+    <p class="foot-addr">San Francisco · London</p>
+  </div>
+</div><div class="container foot-bottom"><span>© 2026 Meridian & Co. — All rights reserved.</span><span>Crafted with care.</span></div></footer>
+
+<script>
+/* ---------- Cursor parallax ---------- */
+const parallax = document.getElementById('parallax');
+const grad = document.getElementById('grad');
+document.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - .5);
+  const y = (e.clientY / window.innerHeight - .5);
+  parallax.style.transform = `translate3d(${x*-14}px, ${y*-10}px, 0)`;
+  grad.style.transform = `translate3d(${x*40}px, ${y*30}px, 0) rotate(${x*10}deg)`;
+});
+
+/* ---------- 3D tilt on card ---------- */
+const tilt = document.getElementById('tilt');
+const frame = tilt.querySelector('.frame');
+tilt.addEventListener('mousemove', (e) => {
+  const r = tilt.getBoundingClientRect();
+  const px = (e.clientX - r.left) / r.width - .5;
+  const py = (e.clientY - r.top) / r.height - .5;
+  frame.style.transform = `rotateY(${px*14}deg) rotateX(${py*-12}deg) translateZ(0)`;
+});
+tilt.addEventListener('mouseleave', () => {
+  frame.style.transform = 'rotateY(0) rotateX(0)';
+});
+
+/* ---------- Particles ---------- */
+const c = document.getElementById('particles');
+const ctx = c.getContext('2d');
+let W, H, parts;
+function resize(){
+  W = c.width = c.offsetWidth * devicePixelRatio;
+  H = c.height = c.offsetHeight * devicePixelRatio;
+}
+function init(){
+  resize();
+  parts = Array.from({length: 70}, () => ({
+    x: Math.random()*W, y: Math.random()*H,
+    r: Math.random()*1.6 + .4,
+    vx: (Math.random()-.5)*.3, vy: (Math.random()-.5)*.3,
+    a: Math.random()*.5 + .2
+  }));
+}
+function frame(){
+  ctx.clearRect(0,0,W,H);
+  for (const p of parts){
+    p.x += p.vx; p.y += p.vy;
+    if(p.x<0||p.x>W) p.vx*=-1;
+    if(p.y<0||p.y>H) p.vy*=-1;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r*devicePixelRatio, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(229,181,103,${p.a})`;
+    ctx.fill();
+  }
+  /* subtle lines between close particles */
+  for (let i=0;i<parts.length;i++){
+    for (let j=i+1;j<parts.length;j++){
+      const dx=parts[i].x-parts[j].x, dy=parts[i].y-parts[j].y;
+      const d=Math.hypot(dx,dy);
+      if(d<120*devicePixelRatio){
+        ctx.strokeStyle=`rgba(124,156,255,${(1-d/(120*devicePixelRatio))*.08})`;
+        ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(parts[i].x,parts[i].y); ctx.lineTo(parts[j].x,parts[j].y); ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(frame);
+}
+window.addEventListener('resize', init);
+init(); frame();
+</script>
+</body></html>

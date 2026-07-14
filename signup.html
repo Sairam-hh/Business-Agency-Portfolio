@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sign up — Meridian & Co.</title>
+<meta name="description" content="Create a Meridian & Co. account as a client or admin."/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#0a0c11;--surface:#11141c;--surface-2:#161a24;--line:rgba(255,255,255,.08);--text:#eef1f6;--muted:#8e97a8;--accent:#e5b567;--accent-2:#7c9cff}
+  body{background:var(--bg);color:var(--text);font-family:"Inter",sans-serif;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px;width:100%}
+  h1,h2{font-family:"Fraunces",serif;letter-spacing:-.02em}
+  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:rgba(10,12,17,.6);border-bottom:1px solid var(--line)}
+  nav.top .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{font-family:"Fraunces",serif;font-size:20px}.brand span{color:var(--accent)}
+  .menu{display:flex;gap:32px}.menu a{font-size:14px;color:var(--muted)}.menu a:hover{color:var(--text)}
+  .cta{display:inline-flex;padding:10px 18px;border:1px solid var(--accent);color:var(--accent);border-radius:999px;font-size:13px;background:none;font-family:inherit}
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px;background:radial-gradient(700px 400px at 70% 20%,rgba(124,156,255,.1),transparent 60%),radial-gradient(600px 400px at 20% 80%,rgba(229,181,103,.08),transparent 60%)}
+  .card{max-width:520px;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:40px}
+  .card h1{font-size:32px;margin:10px 0 8px}
+  .card>p{color:var(--muted);font-size:14px;margin-bottom:28px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .field{margin-bottom:16px}
+  label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  input{width:100%;padding:14px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;color:var(--text);font-size:14px;font-family:inherit}
+  input:focus{outline:0;border-color:var(--accent)}
+  .role-picker{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .role{padding:20px;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;cursor:pointer;text-align:left;transition:all .25s;font-family:inherit;color:var(--text);position:relative;overflow:hidden}
+  .role:hover{border-color:rgba(229,181,103,.4);transform:translateY(-2px)}
+  .role.selected{border-color:var(--accent);background:rgba(229,181,103,.08)}
+  .role .ico{width:36px;height:36px;border-radius:10px;background:rgba(229,181,103,.12);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-family:"Fraunces",serif;font-weight:600}
+  .role b{display:block;font-size:15px;margin-bottom:4px}
+  .role span{font-size:12px;color:var(--muted);line-height:1.5}
+  .submit{width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#0a0c11;border:0;border-radius:12px;font-weight:600;cursor:pointer;font-family:inherit;font-size:14px}
+  .submit:hover{filter:brightness(1.08)}
+  .alt{margin-top:20px;text-align:center;font-size:13px;color:var(--muted)}
+  .alt a{color:var(--accent)}
+  .err{color:#e57373;font-size:12px;margin-top:8px;display:none}
+  footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<nav class="top"><div class="container row">
+  <a href="index.html" class="brand">Meridian<span>&Co.</span></a>
+  <div class="menu"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="contact.html">Contact</a></div>
+  <a href="login.html" class="cta">Log in</a>
+</div></nav>
+
+<main>
+  <form class="card" id="signupForm">
+    <div class="eyebrow">Get started</div>
+    <h1>Create your account</h1>
+    <p>Choose the role that fits how you'll use Meridian & Co.</p>
+
+    <div class="field">
+      <label>I'm signing up as</label>
+      <div class="role-picker" id="roles">
+        <button type="button" class="role selected" data-role="client">
+          <div class="ico">C</div><b>Client</b>
+          <span>Track your engagements, milestones, and team activity.</span>
+        </button>
+        <button type="button" class="role" data-role="admin">
+          <div class="ico">A</div><b>Admin</b>
+          <span>Manage projects, consultants, billing, and workspace settings.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field"><label>First name</label><input id="fn" placeholder="Elena" required></div>
+      <div class="field"><label>Last name</label><input id="ln" placeholder="Morales" required></div>
+    </div>
+    <div class="field"><label>Work email</label><input type="email" id="email" placeholder="you@company.com" required></div>
+    <div class="field"><label>Password</label><input type="password" id="pw" placeholder="At least 8 characters" required></div>
+    <div class="err" id="err">Please complete every field.</div>
+    <button type="submit" class="submit">Create account →</button>
+    <div class="alt">Already have an account? <a href="login.html">Log in</a></div>
+  </form>
+</main>
+
+<footer>© 2026 Meridian & Co.</footer>
+
+<script>
+let role='client';
+document.querySelectorAll('#roles .role').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#roles .role').forEach(x=>x.classList.remove('selected'));
+  b.classList.add('selected');
+  role=b.dataset.role;
+}));
+document.getElementById('signupForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const fn=fn0.value.trim(), ln=ln0.value.trim(), em=email.value.trim(), pw=document.getElementById('pw').value.trim();
+  if(!fn||!ln||!em||!pw){document.getElementById('err').style.display='block';return;}
+  try{localStorage.setItem('meridian_user',JSON.stringify({name:fn+' '+ln,email:em,role}));}catch(_){}
+  window.location.href = role==='admin' ? 'admin-dashboard.html' : 'client-dashboard.html';
+});
+const fn0=document.getElementById('fn'), ln0=document.getElementById('ln'), email=document.getElementById('email');
+</script>
+</body></html>
