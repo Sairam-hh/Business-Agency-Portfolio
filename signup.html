@@ -1,103 +1,307 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sign up — Meridian & Co.</title>
-<meta name="description" content="Create a Meridian & Co. account as a client or admin."/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{--bg:#0a0c11;--surface:#11141c;--surface-2:#161a24;--line:rgba(255,255,255,.08);--text:#eef1f6;--muted:#8e97a8;--accent:#e5b567;--accent-2:#7c9cff}
-  body{background:var(--bg);color:var(--text);font-family:"Inter",sans-serif;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
-  a{color:inherit;text-decoration:none}
-  .container{max-width:1200px;margin:0 auto;padding:0 24px;width:100%}
-  h1,h2{font-family:"Fraunces",serif;letter-spacing:-.02em}
-  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
-  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:rgba(10,12,17,.6);border-bottom:1px solid var(--line)}
-  nav.top .row{display:flex;align-items:center;justify-content:space-between;height:72px}
-  .brand{font-family:"Fraunces",serif;font-size:20px}.brand span{color:var(--accent)}
-  .menu{display:flex;gap:32px}.menu a{font-size:14px;color:var(--muted)}.menu a:hover{color:var(--text)}
-  .cta{display:inline-flex;padding:10px 18px;border:1px solid var(--accent);color:var(--accent);border-radius:999px;font-size:13px;background:none;font-family:inherit}
-  main{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px;background:radial-gradient(700px 400px at 70% 20%,rgba(124,156,255,.1),transparent 60%),radial-gradient(600px 400px at 20% 80%,rgba(229,181,103,.08),transparent 60%)}
-  .card{max-width:520px;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:40px}
-  .card h1{font-size:32px;margin:10px 0 8px}
-  .card>p{color:var(--muted);font-size:14px;margin-bottom:28px}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .field{margin-bottom:16px}
-  label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-  input{width:100%;padding:14px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;color:var(--text);font-size:14px;font-family:inherit}
-  input:focus{outline:0;border-color:var(--accent)}
-  .role-picker{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .role{padding:20px;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;cursor:pointer;text-align:left;transition:all .25s;font-family:inherit;color:var(--text);position:relative;overflow:hidden}
-  .role:hover{border-color:rgba(229,181,103,.4);transform:translateY(-2px)}
-  .role.selected{border-color:var(--accent);background:rgba(229,181,103,.08)}
-  .role .ico{width:36px;height:36px;border-radius:10px;background:rgba(229,181,103,.12);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-family:"Fraunces",serif;font-weight:600}
-  .role b{display:block;font-size:15px;margin-bottom:4px}
-  .role span{font-size:12px;color:var(--muted);line-height:1.5}
-  .submit{width:100%;margin-top:14px;padding:14px;background:var(--accent);color:#0a0c11;border:0;border-radius:12px;font-weight:600;cursor:pointer;font-family:inherit;font-size:14px}
-  .submit:hover{filter:brightness(1.08)}
-  .alt{margin-top:20px;text-align:center;font-size:13px;color:var(--muted)}
-  .alt a{color:var(--accent)}
-  .err{color:#e57373;font-size:12px;margin-top:8px;display:none}
-  footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create your NovaPixel Agency account — join us to manage projects, track progress, and collaborate." />
+  <title>Sign Up — NovaPixel Agency</title>
+  <style>
+    :root{
+      --primary:#111827;--secondary:#7C3AED;--accent:#06B6D4;--highlight:#F43F5E;
+      --bg:#F8FAFC;--card:#FFFFFF;--grad:linear-gradient(135deg,#7C3AED,#06B6D4);
+      --grad-soft:linear-gradient(135deg,rgba(124,58,237,.12),rgba(6,182,212,.12));
+      --text:#1e293b;--muted:#64748b;--line:rgba(124,58,237,.14);
+      --radius:20px;--radius-sm:12px;--shadow:0 10px 40px rgba(17,24,39,.08);
+      --shadow-lg:0 24px 64px rgba(17,24,39,.14);
+      --glass:rgba(255,255,255,.65);--glass-border:rgba(255,255,255,.5);
+      --ease:cubic-bezier(.22,1,.36,1);
+      --font:'Segoe UI',system-ui,-apple-system,sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);color:var(--text);background:var(--primary);overflow-x:hidden;line-height:1.6;min-height:100vh}
+    a{text-decoration:none;color:inherit}
+    ul{list-style:none}
+    button{font-family:inherit;cursor:pointer;border:none;background:none}
+    section{position:relative}
+
+    #loader{position:fixed;inset:0;z-index:9999;background:var(--primary);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .6s,visibility .6s}
+    #loader.hidden{opacity:0;visibility:hidden}
+    .loader-ring{width:56px;height:56px;border:4px solid rgba(124,58,237,.2);border-top-color:var(--secondary);border-right-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+    .loader-text{color:#fff;font-size:14px;letter-spacing:3px;font-weight:600;text-transform:uppercase;opacity:.7}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .auth-bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+    .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.4;animation:float 10s ease-in-out infinite}
+    .orb-1{width:500px;height:500px;background:var(--secondary);top:-150px;right:-100px}
+    .orb-2{width:400px;height:400px;background:var(--accent);bottom:-100px;left:-100px;animation-delay:2s}
+    .orb-3{width:300px;height:300px;background:var(--highlight);top:40%;left:50%;animation-delay:4s;opacity:.2}
+    @keyframes float{0%,100%{transform:translateY(0) translateX(0)}50%{transform:translateY(-50px) translateX(30px)}}
+    .grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%)}
+
+    .auth-nav{position:relative;z-index:10;padding:24px;text-align:center}
+    .auth-nav .logo{display:inline-flex;align-items:center;gap:10px;font-size:22px;font-weight:800;letter-spacing:-.5px;color:#fff}
+    .auth-nav .logo-mark{width:38px;height:38px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;font-weight:900;box-shadow:0 6px 20px rgba(124,58,237,.35);transition:transform .4s var(--ease)}
+    .auth-nav .logo:hover .logo-mark{transform:rotate(180deg) scale(1.05)}
+    .auth-nav .logo-text span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .auth-nav .back-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:14px;color:rgba(255,255,255,.6);transition:color .3s}
+    .auth-nav .back-link:hover{color:var(--accent)}
+
+    .auth-wrap{position:relative;z-index:5;min-height:calc(100vh - 120px);display:flex;align-items:center;justify-content:center;padding:20px 24px 60px}
+    .auth-card{width:100%;max-width:520px;background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:28px;padding:44px 40px;box-shadow:var(--shadow-lg),0 0 80px rgba(124,58,237,.1);animation:cardIn .8s var(--ease) both}
+    @keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:none}}
+    .auth-head{text-align:center;margin-bottom:28px}
+    .auth-head .icon{width:60px;height:60px;background:var(--grad);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;margin:0 auto 16px;box-shadow:0 8px 24px rgba(124,58,237,.35)}
+    .auth-head h1{font-size:26px;font-weight:800;color:var(--primary);margin-bottom:6px}
+    .auth-head p{font-size:15px;color:var(--muted)}
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .form-group{margin-bottom:18px}
+    .form-group label{display:block;font-size:14px;font-weight:600;margin-bottom:8px;color:var(--primary)}
+    .form-group label .req{color:var(--highlight)}
+    .input-wrap{position:relative}
+    .input-wrap .icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--muted);pointer-events:none}
+    .form-control{width:100%;padding:14px 18px 14px 46px;border:2px solid rgba(17,24,39,.1);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;transition:all .3s var(--ease);background:rgba(255,255,255,.7);color:var(--text)}
+    .form-control:focus{outline:none;border-color:var(--secondary);background:#fff;box-shadow:0 0 0 4px rgba(124,58,237,.08)}
+    .form-control.error{border-color:var(--highlight)}
+    .input-wrap .toggle-pw{position:absolute;right:16px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px;color:var(--muted);transition:color .3s;user-select:none}
+    .input-wrap .toggle-pw:hover{color:var(--secondary)}
+    .error-msg{display:none;font-size:12px;color:var(--highlight);margin-top:6px;font-weight:500}
+    .error-msg.show{display:block}
+    .form-success{display:none;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:20px;color:#16a34a;font-size:14px;font-weight:600;align-items:center;gap:10px}
+    .form-success.show{display:flex}
+
+    /* PASSWORD STRENGTH */
+    .pw-strength{margin-top:10px}
+    .pw-bar{height:6px;background:rgba(17,24,39,.08);border-radius:3px;overflow:hidden}
+    .pw-fill{height:100%;width:0;border-radius:3px;transition:width .4s var(--ease),background .4s}
+    .pw-label{font-size:12px;font-weight:600;margin-top:6px;color:var(--muted);transition:color .3s}
+
+    .checkbox-wrap{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);cursor:pointer;user-select:none;margin-bottom:24px}
+    .checkbox-wrap input{width:18px;height:18px;accent-color:var(--secondary);cursor:pointer;margin-top:2px;flex-shrink:0}
+    .checkbox-wrap a{color:var(--secondary);font-weight:600}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:var(--radius-sm);font-size:15px;font-weight:600;transition:all .35s var(--ease);position:relative;overflow:hidden;white-space:nowrap;cursor:pointer;font-family:inherit}
+    .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 24px rgba(124,58,237,.3);width:100%}
+    .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);transition:left .6s var(--ease)}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(124,58,237,.42)}
+    .btn-primary:hover::after{left:100%}
+
+    .auth-divider{display:flex;align-items:center;gap:16px;margin:24px 0;text-align:center}
+    .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:rgba(17,24,39,.1)}
+    .auth-divider span{font-size:13px;color:var(--muted);font-weight:500}
+    .social-row{display:flex;gap:12px}
+    .social-btn{flex:1;padding:12px;border-radius:var(--radius-sm);border:2px solid rgba(17,24,39,.1);background:rgba(255,255,255,.5);cursor:pointer;font-size:14px;font-weight:600;color:var(--primary);transition:all .3s var(--ease);display:flex;align-items:center;justify-content:center;gap:8px}
+    .social-btn:hover{border-color:var(--secondary);transform:translateY(-2px)}
+
+    .auth-foot{text-align:center;margin-top:24px;font-size:15px;color:var(--muted)}
+    .auth-foot a{color:var(--secondary);font-weight:700;transition:color .3s}
+    .auth-foot a:hover{color:var(--accent)}
+
+    .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:10000;mix-blend-mode:difference;transition:transform .15s var(--ease),width .2s,height .2s}
+    .cursor-dot{width:8px;height:8px;background:#fff;transform:translate(-50%,-50%)}
+    .cursor-ring{width:36px;height:36px;border:2px solid rgba(255,255,255,.5);transform:translate(-50%,-50%);transition:transform .25s var(--ease),width .25s,height .25s,opacity .2s}
+    .cursor-ring.grow{width:60px;height:60px;background:rgba(124,58,237,.15);border-color:var(--secondary)}
+    @media(max-width:1024px){.cursor-dot,.cursor-ring{display:none}}
+
+    @media(max-width:480px){
+      .auth-card{padding:32px 24px}
+      .form-row{grid-template-columns:1fr}
+      .social-row{flex-direction:column}
+    }
+  </style>
 </head>
 <body>
-<nav class="top"><div class="container row">
-  <a href="index.html" class="brand">Meridian<span>&Co.</span></a>
-  <div class="menu"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="contact.html">Contact</a></div>
-  <a href="login.html" class="cta">Log in</a>
-</div></nav>
+  <div id="loader"><div class="loader-ring"></div><div class="loader-text">NovaPixel</div></div>
+  <div class="cursor-dot"></div><div class="cursor-ring"></div>
 
-<main>
-  <form class="card" id="signupForm">
-    <div class="eyebrow">Get started</div>
-    <h1>Create your account</h1>
-    <p>Choose the role that fits how you'll use Meridian & Co.</p>
+  <div class="auth-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+  <div class="grid-bg"></div>
 
-    <div class="field">
-      <label>I'm signing up as</label>
-      <div class="role-picker" id="roles">
-        <button type="button" class="role selected" data-role="client">
-          <div class="ico">C</div><b>Client</b>
-          <span>Track your engagements, milestones, and team activity.</span>
-        </button>
-        <button type="button" class="role" data-role="admin">
-          <div class="ico">A</div><b>Admin</b>
-          <span>Manage projects, consultants, billing, and workspace settings.</span>
-        </button>
+  <nav class="auth-nav">
+    <a href="index.html" class="logo"><div class="logo-mark">N</div><div class="logo-text">Nova<span>Pixel</span></div></a>
+    <br><a href="index.html" class="back-link">← Back to Home</a>
+  </nav>
+
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-head">
+        <div class="icon">✨</div>
+        <h1>Create Your Account</h1>
+        <p>Join NovaPixel to manage your projects and collaborate</p>
       </div>
+
+      <div class="form-success" id="formSuccess"><span>✓</span> Account created successfully! Redirecting to login...</div>
+
+      <form id="signupForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name <span class="req">*</span></label>
+            <div class="input-wrap"><span class="icon">👤</span>
+              <input type="text" class="form-control" name="name" placeholder="John Doe" />
+            </div>
+            <div class="error-msg">Name must be at least 2 characters.</div>
+          </div>
+          <div class="form-group">
+            <label>Phone <span class="req">*</span></label>
+            <div class="input-wrap"><span class="icon">📱</span>
+              <input type="tel" class="form-control" name="phone" placeholder="+1 415 555 0192" />
+            </div>
+            <div class="error-msg">Enter a valid phone number.</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email <span class="req">*</span></label>
+            <div class="input-wrap"><span class="icon">✉</span>
+              <input type="email" class="form-control" name="email" placeholder="you@example.com" />
+            </div>
+            <div class="error-msg">Enter a valid email address.</div>
+          </div>
+          <div class="form-group">
+            <label>Company Name</label>
+            <div class="input-wrap"><span class="icon">🏢</span>
+              <input type="text" class="form-control" name="company" placeholder="Your company (optional)" />
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Password <span class="req">*</span></label>
+            <div class="input-wrap"><span class="icon">🔒</span>
+              <input type="password" class="form-control" name="password" placeholder="Min 6 characters" />
+              <span class="toggle-pw" id="togglePw1">👁</span>
+            </div>
+            <div class="pw-strength">
+              <div class="pw-bar"><div class="pw-fill" id="pwFill"></div></div>
+              <div class="pw-label" id="pwLabel">Password strength</div>
+            </div>
+            <div class="error-msg">Password must be at least 6 characters.</div>
+          </div>
+          <div class="form-group">
+            <label>Confirm Password <span class="req">*</span></label>
+            <div class="input-wrap"><span class="icon">🔒</span>
+              <input type="password" class="form-control" name="confirm" placeholder="Re-enter password" />
+              <span class="toggle-pw" id="togglePw2">👁</span>
+            </div>
+            <div class="error-msg">Passwords do not match.</div>
+          </div>
+        </div>
+        <label class="checkbox-wrap">
+          <input type="checkbox" name="terms" id="termsCheck" />
+          <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+        </label>
+        <button type="submit" class="btn btn-primary">Create Account →</button>
+      </form>
+
+      <div class="auth-divider"><span>or sign up with</span></div>
+      <div class="social-row">
+        <button class="social-btn" type="button">G Google</button>
+        <button class="social-btn" type="button">in LinkedIn</button>
+      </div>
+
+      <div class="auth-foot">Already have an account? <a href="login.html">Sign in →</a></div>
     </div>
+  </div>
 
-    <div class="row2">
-      <div class="field"><label>First name</label><input id="fn" placeholder="Elena" required></div>
-      <div class="field"><label>Last name</label><input id="ln" placeholder="Morales" required></div>
-    </div>
-    <div class="field"><label>Work email</label><input type="email" id="email" placeholder="you@company.com" required></div>
-    <div class="field"><label>Password</label><input type="password" id="pw" placeholder="At least 8 characters" required></div>
-    <div class="err" id="err">Please complete every field.</div>
-    <button type="submit" class="submit">Create account →</button>
-    <div class="alt">Already have an account? <a href="login.html">Log in</a></div>
-  </form>
-</main>
+  <script>
+    window.addEventListener('load',function(){setTimeout(function(){document.getElementById('loader').classList.add('hidden')},800)});
+    (function(){
+      if(window.matchMedia('(max-width:1024px)').matches)return;
+      var dot=document.querySelector('.cursor-dot'),ring=document.querySelector('.cursor-ring'),mx=0,my=0,rx=0,ry=0;
+      document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+      function anim(){rx+=(mx-rx)*.2;ry+=(my-ry)*.2;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)}anim();
+      document.querySelectorAll('a,button,input,.toggle-pw').forEach(function(el){el.addEventListener('mouseenter',function(){ring.classList.add('grow')});el.addEventListener('mouseleave',function(){ring.classList.remove('grow')})});
+    })();
 
-<footer>© 2026 Meridian & Co.</footer>
+    /* TOGGLE PASSWORDS */
+    function setupToggle(toggleId,inputName){
+      var t=document.getElementById(toggleId),i=document.querySelector('[name='+inputName+']');
+      t.addEventListener('click',function(){if(i.type==='password'){i.type='text';t.textContent='🙈'}else{i.type='password';t.textContent='👁'}});
+    }
+    setupToggle('togglePw1','password');
+    setupToggle('togglePw2','confirm');
 
-<script>
-let role='client';
-document.querySelectorAll('#roles .role').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('#roles .role').forEach(x=>x.classList.remove('selected'));
-  b.classList.add('selected');
-  role=b.dataset.role;
-}));
-document.getElementById('signupForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const fn=fn0.value.trim(), ln=ln0.value.trim(), em=email.value.trim(), pw=document.getElementById('pw').value.trim();
-  if(!fn||!ln||!em||!pw){document.getElementById('err').style.display='block';return;}
-  try{localStorage.setItem('meridian_user',JSON.stringify({name:fn+' '+ln,email:em,role}));}catch(_){}
-  window.location.href = role==='admin' ? 'admin-dashboard.html' : 'client-dashboard.html';
-});
-const fn0=document.getElementById('fn'), ln0=document.getElementById('ln'), email=document.getElementById('email');
-</script>
-</body></html>
+    /* PASSWORD STRENGTH */
+    var pwInput=document.querySelector('[name=password]');
+    var pwFill=document.getElementById('pwFill');
+    var pwLabel=document.getElementById('pwLabel');
+    function checkStrength(v){
+      var score=0;
+      if(v.length>=6)score++;
+      if(v.length>=10)score++;
+      if(/[A-Z]/.test(v)&&/[a-z]/.test(v))score++;
+      if(/\d/.test(v))score++;
+      if(/[!@#$%^&*(),.?":{}|<>]/.test(v))score++;
+      return score;
+    }
+    pwInput.addEventListener('input',function(){
+      var v=pwInput.value;
+      if(v.length===0){pwFill.style.width='0';pwLabel.textContent='Password strength';pwLabel.style.color='var(--muted)';return}
+      var s=checkStrength(v);
+      var widths=['20%','40%','60%','80%','100%'];
+      var labels=['Very Weak','Weak','Fair','Good','Strong'];
+      var colors=['#ef4444','#f59e0b','#eab308','#22c55e','#16a34a'];
+      var idx=Math.min(s,5)-1;
+      if(idx<0)idx=0;
+      pwFill.style.width=widths[idx];
+      pwFill.style.background=colors[idx];
+      pwLabel.textContent=labels[idx];
+      pwLabel.style.color=colors[idx];
+    });
+
+    /* FORM VALIDATION */
+    var form=document.getElementById('signupForm');
+    function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}
+    function validPhone(v){return /^[+]?[\d\s\-\(\)]{7,}$/.test(v)}
+    function getGroup(input){return input.closest('.form-group')}
+    function showError(input){input.classList.add('error');var g=getGroup(input);var em=g.querySelector('.error-msg');if(em)em.classList.add('show')}
+    function clearError(input){input.classList.remove('error');var g=getGroup(input);var em=g.querySelector('.error-msg');if(em)em.classList.remove('show')}
+
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var valid=true;
+      var inputs={};
+      form.querySelectorAll('.form-control').forEach(function(i){
+        inputs[i.name]=i.value.trim();
+        clearError(i);
+      });
+
+      if(inputs.name.length<2){showError(form.querySelector('[name=name]'));valid=false}
+      if(!validPhone(inputs.phone)){showError(form.querySelector('[name=phone]'));valid=false}
+      if(!validEmail(inputs.email)){showError(form.querySelector('[name=email]'));valid=false}
+      if(inputs.password.length<6){showError(form.querySelector('[name=password]'));valid=false}
+      if(inputs.confirm!==inputs.password){showError(form.querySelector('[name=confirm]'));valid=false}
+      if(!document.getElementById('termsCheck').checked){alert('Please accept the Terms of Service and Privacy Policy to continue.');valid=false}
+
+      if(!valid)return;
+
+      /* STORE USER IN LOCALSTORAGE */
+      var users=JSON.parse(localStorage.getItem('novapixel_users')||'[]');
+      users.push({
+        name:inputs.name,
+        email:inputs.email,
+        phone:inputs.phone,
+        company:inputs.company,
+        password:inputs.password,
+        createdAt:Date.now()
+      });
+      localStorage.setItem('novapixel_users',JSON.stringify(users));
+
+      var success=document.getElementById('formSuccess');
+      success.classList.add('show');
+      form.reset();
+      pwFill.style.width='0';pwLabel.textContent='Password strength';pwLabel.style.color='var(--muted)';
+
+      setTimeout(function(){window.location.href='login.html'},2000);
+    });
+
+    form.querySelectorAll('.form-control').forEach(function(inp){
+      inp.addEventListener('input',function(){clearError(inp)});
+    });
+
+    document.querySelectorAll('.btn').forEach(function(btn){btn.addEventListener('click',function(e){var r=document.createElement('span'),rect=btn.getBoundingClientRect(),s=Math.max(rect.width,rect.height);r.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,.4);width:'+s+'px;height:'+s+'px;left:'+(e.clientX-rect.left-s/2)+'px;top:'+(e.clientY-rect.top-s/2)+'px;transform:scale(0);animation:rip .6s ease-out;pointer-events:none';btn.appendChild(r);setTimeout(function(){r.remove()},600)})});
+    var st=document.createElement('style');st.textContent='@keyframes rip{to{transform:scale(2.5);opacity:0}}';document.head.appendChild(st);
+  </script>
+</body>
+</html>

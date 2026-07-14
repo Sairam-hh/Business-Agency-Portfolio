@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NovaPixel Agency Client Dashboard — view your projects, tasks, messages, and files." />
+  <title>Client Dashboard — NovaPixel Agency</title>
+  <style>
+    :root{
+      --primary:#111827;--secondary:#7C3AED;--accent:#06B6D4;--highlight:#F43F5E;
+      --bg:#F1f5f9;--card:#FFFFFF;--grad:linear-gradient(135deg,#7C3AED,#06B6D4);
+      --grad-soft:linear-gradient(135deg,rgba(124,58,237,.12),rgba(6,182,212,.12));
+      --text:#1e293b;--muted:#64748b;--line:rgba(124,58,237,.14);
+      --radius:16px;--radius-sm:10px;--shadow:0 4px 20px rgba(17,24,39,.06);
+      --shadow-lg:0 12px 40px rgba(17,24,39,.1);
+      --sidebar-w:260px;--ease:cubic-bezier(.22,1,.36,1);
+      --font:'Segoe UI',system-ui,-apple-system,sans-serif;
+    }
+    body.dark{--bg:#0f172a;--card:#1e293b;--text:#e2e8f0;--muted:#94a3b8;--line:rgba(255,255,255,.08);--shadow:0 4px 20px rgba(0,0,0,.2);--shadow-lg:0 12px 40px rgba(0,0,0,.3)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);color:var(--text);background:var(--bg);overflow-x:hidden;line-height:1.6;transition:background .4s,color .4s}
+    body.lock{overflow:hidden}
+    a{text-decoration:none;color:inherit}
+    ul{list-style:none}
+    img{max-width:100%;display:block}
+    button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+    .sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--primary);color:#fff;display:flex;flex-direction:column;z-index:100;transition:transform .4s var(--ease)}
+    .sidebar-brand{padding:24px;display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08)}
+    .sidebar-brand .logo-mark{width:36px;height:36px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;flex-shrink:0}
+    .sidebar-brand span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .sidebar-nav{flex:1;padding:20px 12px;overflow-y:auto}
+    .sidebar-nav .nav-section{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.3);padding:16px 12px 8px;font-weight:700}
+    .sidebar-nav a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);font-size:15px;font-weight:500;color:rgba(255,255,255,.6);transition:all .3s var(--ease);margin-bottom:4px}
+    .sidebar-nav a:hover{background:rgba(255,255,255,.06);color:#fff}
+    .sidebar-nav a.active{background:var(--grad);color:#fff;box-shadow:0 4px 16px rgba(124,58,237,.3)}
+    .sidebar-nav a .icon{font-size:18px;width:22px;text-align:center;flex-shrink:0}
+    .sidebar-nav a .badge{margin-left:auto;background:var(--highlight);color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:700}
+    .sidebar-footer{padding:16px;border-top:1px solid rgba(255,255,255,.08)}
+    .sidebar-user{display:flex;align-items:center;gap:12px;padding:8px}
+    .sidebar-user .avatar{width:40px;height:40px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex-shrink:0}
+    .sidebar-user .info .name{font-size:14px;font-weight:600;color:#fff}
+    .sidebar-user .info .role{font-size:12px;color:rgba(255,255,255,.4)}
+
+    .main{margin-left:var(--sidebar-w);min-height:100vh;transition:margin .4s var(--ease)}
+    .topbar{position:sticky;top:0;z-index:50;background:var(--card);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow);transition:background .4s}
+    .topbar-left{display:flex;align-items:center;gap:16px}
+    .hamburger{display:none;flex-direction:column;gap:4px;padding:8px;cursor:pointer}
+    .hamburger span{width:24px;height:3px;background:var(--text);border-radius:3px;transition:all .3s}
+    .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .topbar h1{font-size:22px;font-weight:700}
+    .topbar-right{display:flex;align-items:center;gap:16px}
+    .search-box{position:relative}
+    .search-box input{padding:10px 16px 10px 40px;border:2px solid var(--line);border-radius:30px;font-size:14px;background:var(--bg);color:var(--text);width:220px;transition:all .3s;font-family:inherit}
+    .search-box input:focus{outline:none;border-color:var(--secondary);width:280px}
+    .search-box .icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--muted)}
+    .topbar-btn{width:42px;height:42px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .3s;position:relative}
+    .topbar-btn:hover{background:var(--grad);color:#fff;transform:translateY(-2px)}
+    .topbar-btn .notif-dot{position:absolute;top:8px;right:8px;width:8px;height:8px;background:var(--highlight);border-radius:50%;border:2px solid var(--card)}
+    .dark-toggle{width:42px;height:42px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .3s}
+    .dark-toggle:hover{background:var(--grad);color:#fff;transform:translateY(-2px)}
+
+    .content{padding:28px}
+    .dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:28px}
+    .dash-card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:all .4s var(--ease);border:1px solid var(--line)}
+    .dash-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+    .dash-card .dc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .dash-card .dc-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
+    .dash-card .dc-icon.purple{background:var(--grad)}
+    .dash-card .dc-icon.cyan{background:linear-gradient(135deg,#06B6D4,#0891b2)}
+    .dash-card .dc-icon.pink{background:linear-gradient(135deg,#F43F5E,#e11d48)}
+    .dash-card .dc-icon.green{background:linear-gradient(135deg,#22c55e,#16a34a)}
+    .dash-card .dc-trend{font-size:13px;font-weight:700;padding:4px 10px;border-radius:20px}
+    .dash-card .dc-trend.up{background:rgba(34,197,94,.12);color:#16a34a}
+    .dash-card .dc-value{font-size:32px;font-weight:800;margin-bottom:4px}
+    .dash-card .dc-label{font-size:14px;color:var(--muted)}
+
+    .panels{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:28px}
+    .panel{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border:1px solid var(--line)}
+    .panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .panel-head h3{font-size:18px;font-weight:700}
+    .panel-head .action{font-size:13px;font-weight:600;color:var(--secondary);cursor:pointer;transition:color .3s}
+    .panel-head .action:hover{color:var(--accent)}
+
+    /* PROGRESS CARDS */
+    .progress-list{display:flex;flex-direction:column;gap:20px}
+    .progress-item{}
+    .progress-item .pi-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .progress-item .pi-name{font-weight:600;font-size:15px}
+    .progress-item .pi-pct{font-weight:700;color:var(--secondary);font-size:14px}
+    .progress-bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+    .progress-fill{height:100%;background:var(--grad);border-radius:4px;transition:width 1.2s var(--ease)}
+    .progress-item .pi-meta{font-size:12px;color:var(--muted);margin-top:6px}
+
+    .activity-list{display:flex;flex-direction:column;gap:16px}
+    .activity-item{display:flex;gap:14px;align-items:flex-start}
+    .activity-item .ai-icon{width:38px;height:38px;border-radius:10px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+    .activity-item .ai-text{font-size:14px;flex:1}
+    .activity-item .ai-text .t{font-weight:600}
+    .activity-item .ai-text .s{font-size:12px;color:var(--muted)}
+    .activity-item .ai-time{font-size:12px;color:var(--muted);white-space:nowrap}
+
+    /* TASKS */
+    .task-item{display:flex;align-items:center;gap:14px;padding:14px;border-radius:var(--radius-sm);background:var(--bg);transition:all .3s;border:1px solid transparent}
+    .task-item:hover{border-color:var(--line)}
+    .task-check{width:22px;height:22px;border:2px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;flex-shrink:0}
+    .task-check.done{background:var(--grad);border-color:transparent;color:#fff;font-size:13px}
+    .task-text{font-size:14px;flex:1;transition:all .3s}
+    .task-text.done{text-decoration:line-through;color:var(--muted)}
+    .task-date{font-size:12px;color:var(--muted);white-space:nowrap}
+    .task-priority{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+    .task-priority.high{background:rgba(244,63,94,.12);color:#e11d48}
+    .task-priority.medium{background:rgba(245,158,11,.12);color:#d97706}
+    .task-priority.low{background:rgba(34,197,94,.12);color:#16a34a}
+
+    .table-wrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse}
+    thead th{text-align:left;padding:14px 16px;font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--line)}
+    tbody td{padding:14px 16px;font-size:14px;border-bottom:1px solid var(--line)}
+    tbody tr{transition:background .2s}
+    tbody tr:hover{background:var(--grad-soft)}
+    .t-status{font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;display:inline-block}
+    .t-status.active{background:rgba(34,197,94,.12);color:#16a34a}
+    .t-status.pending{background:rgba(245,158,11,.12);color:#d97706}
+    .t-status.completed{background:rgba(6,182,212,.12);color:#0891b2}
+
+    /* FILES */
+    .file-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
+    .file-card{background:var(--bg);border-radius:var(--radius-sm);padding:20px;text-align:center;transition:all .3s;border:1px solid transparent;cursor:pointer}
+    .file-card:hover{border-color:var(--line);transform:translateY(-3px);box-shadow:var(--shadow)}
+    .file-card .fc-icon{font-size:36px;margin-bottom:10px}
+    .file-card .fc-name{font-size:13px;font-weight:600;word-break:break-word}
+    .file-card .fc-size{font-size:11px;color:var(--muted);margin-top:4px}
+
+    .dash-section{display:none}
+    .dash-section.active{display:block;animation:fadeIn .5s var(--ease) both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+    .side-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;opacity:0;visibility:hidden;transition:all .4s}
+    .side-overlay.show{opacity:1;visibility:visible}
+    .sidebar-close{display:none;position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:20px;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;z-index:101}
+    .sidebar-close:hover{background:var(--highlight);transform:rotate(90deg)}
+
+    .profile-card{text-align:center;padding:32px}
+    .profile-card .p-avatar{width:100px;height:100px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:40px;font-weight:800;margin:0 auto 16px;box-shadow:0 8px 24px rgba(124,58,237,.3)}
+    .profile-card .p-name{font-size:22px;font-weight:700;margin-bottom:4px}
+    .profile-card .p-role{font-size:14px;color:var(--secondary);font-weight:600;margin-bottom:20px}
+    .profile-card .p-info{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;text-align:left}
+    .profile-card .p-info .pi{padding:14px;background:var(--bg);border-radius:var(--radius-sm)}
+    .profile-card .p-info .pi .l{font-size:12px;color:var(--muted);margin-bottom:4px}
+    .profile-card .p-info .pi .v{font-size:14px;font-weight:600}
+
+    @media(max-width:1024px){
+      .sidebar{transform:translateX(-100%)}
+      .sidebar.open{transform:translateX(0)}
+      .main{margin-left:0}
+      .hamburger{display:flex}
+      .sidebar-close{display:flex}
+      .search-box input{width:160px}
+      .search-box input:focus{width:200px}
+      .dash-grid{grid-template-columns:repeat(2,1fr)}
+      .panels{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      .content{padding:18px}
+      .dash-grid{grid-template-columns:1fr}
+      .search-box{display:none}
+      .topbar h1{font-size:18px}
+      .profile-card .p-info{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body class="dark">
+  <aside class="sidebar" id="sidebar">
+    <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">×</button>
+    <div class="sidebar-brand"><div class="logo-mark">N</div>Nova<span>Pixel</span></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Menu</div>
+      <a href="#" class="nav-link active" data-section="dashboard"><span class="icon">📊</span> Dashboard</a>
+      <a href="#" class="nav-link" data-section="projects"><span class="icon">📁</span> My Projects</a>
+      <a href="#" class="nav-link" data-section="tasks"><span class="icon">✅</span> Tasks <span class="badge">3</span></a>
+      <a href="#" class="nav-link" data-section="messages"><span class="icon">💬</span> Messages</a>
+      <a href="#" class="nav-link" data-section="files"><span class="icon">📎</span> Files</a>
+      <div class="nav-section">Account</div>
+      <a href="#" class="nav-link" data-section="profile"><span class="icon">👤</span> Profile</a>
+      <a href="#" class="nav-link" data-section="settings"><span class="icon">⚙️</span> Settings</a>
+      <a href="#" id="logoutBtn"><span class="icon">🚪</span> Logout</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar">SM</div>
+        <div class="info"><div class="name">Sarah Mitchell</div><div class="role">Client · ShopWave</div></div>
+      </div>
+    </div>
+  </aside>
+  <div class="side-overlay" id="sideOverlay"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        <h1 id="pageTitle">My Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="search-box"><span class="icon">🔍</span><input type="text" placeholder="Search..." /></div>
+        <button class="topbar-btn" aria-label="Notifications">🔔<span class="notif-dot"></span></button>
+        <button class="dark-toggle" id="darkToggle" aria-label="Toggle theme">☀️</button>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- DASHBOARD -->
+      <div class="dash-section active" id="section-dashboard">
+        <div class="dash-grid">
+          <div class="dash-card"><div class="dc-top"><div class="dc-icon purple">📁</div><span class="dc-trend up">Active</span></div><div class="dc-value">3</div><div class="dc-label">Active Projects</div></div>
+          <div class="dash-card"><div class="dc-top"><div class="dc-icon cyan">✅</div><span class="dc-trend up">2 left</span></div><div class="dc-value">5/8</div><div class="dc-label">Tasks Completed</div></div>
+          <div class="dash-card"><div class="dc-top"><div class="dc-icon pink">💬</div><span class="dc-trend up">New</span></div><div class="dc-value">4</div><div class="dc-label">Unread Messages</div></div>
+          <div class="dash-card"><div class="dc-top"><div class="dc-icon green">📎</div></div><div class="dc-value">28</div><div class="dc-label">Files Shared</div></div>
+        </div>
+
+        <div class="panels">
+          <div class="panel">
+            <div class="panel-head"><h3>Project Progress</h3><span class="action">View All →</span></div>
+            <div class="progress-list">
+              <div class="progress-item">
+                <div class="pi-top"><span class="pi-name">ShopWave E-commerce</span><span class="pi-pct">85%</span></div>
+                <div class="progress-bar"><div class="progress-fill" data-w="85"></div></div>
+                <div class="pi-meta">Due: Jul 20 · Lead: Jordan Lee</div>
+              </div>
+              <div class="progress-item">
+                <div class="pi-top"><span class="pi-name">ShopWave Mobile App</span><span class="pi-pct">45%</span></div>
+                <div class="progress-bar"><div class="progress-fill" data-w="45"></div></div>
+                <div class="pi-meta">Due: Sep 05 · Lead: Dev Patel</div>
+              </div>
+              <div class="progress-item">
+                <div class="pi-top"><span class="pi-name">SEO Optimization</span><span class="pi-pct">70%</span></div>
+                <div class="progress-bar"><div class="progress-fill" data-w="70"></div></div>
+                <div class="pi-meta">Due: Aug 15 · Lead: Marcus Webb</div>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>Recent Activity</h3></div>
+            <div class="activity-list">
+              <div class="activity-item"><div class="ai-icon">🎨</div><div class="ai-text"><div class="t">Design mockups uploaded</div><div class="s">3 new homepage variations</div></div><div class="ai-time">2h</div></div>
+              <div class="activity-item"><div class="ai-icon">✅</div><div class="ai-text"><div class="t">Task completed</div><div class="s">Checkout flow review approved</div></div><div class="ai-time">5h</div></div>
+              <div class="activity-item"><div class="ai-icon">💬</div><div class="ai-text"><div class="t">Message from Jordan</div><div class="s">"Can we sync on Friday?"</div></div><div class="ai-time">1d</div></div>
+              <div class="activity-item"><div class="ai-icon">📎</div><div class="ai-text"><div class="t">New file shared</div><div class="s">Brand-guidelines-v2.pdf</div></div><div class="ai-time">2d</div></div>
+              <div class="activity-item"><div class="ai-icon">🚀</div><div class="ai-text"><div class="t">Milestone reached</div><div class="s">Phase 1 — Discovery complete</div></div><div class="ai-time">3d</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MY PROJECTS -->
+      <div class="dash-section" id="section-projects">
+        <div class="dash-grid">
+          <div class="dash-card"><div class="dc-top"><div class="dc-icon purple">📁</div></div><div class="dc-value">3</div><div class="dc-label">Total Projects</div></div>
+          <div class="dash-card"><div class="dc-top"><div class="dc-icon green">🔄</div></div><div class="dc-value">2</div><div class="dc-label">In Progress</div></div>
+          <div class="dash-card"><div class="dc-top"><div class="dc-icon cyan">✅</div></div><div class="dc-value">1</div><div class="dc-label">Completed</div></div>
+          <div class="dash-card"><div class="dc-top"><div class="dc-icon pink">💰</div></div><div class="dc-value">$32K</div><div class="dc-label">Total Invested</div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>My Projects</h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Project</th><th>Progress</th><th>Deadline</th><th>Team Lead</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>ShopWave E-commerce</td><td>85%</td><td>Jul 20</td><td>Jordan Lee</td><td><span class="t-status active">Active</span></td></tr>
+                <tr><td>ShopWave Mobile App</td><td>45%</td><td>Sep 05</td><td>Dev Patel</td><td><span class="t-status active">Active</span></td></tr>
+                <tr><td>SEO Optimization</td><td>70%</td><td>Aug 15</td><td>Marcus Webb</td><td><span class="t-status active">Active</span></td></tr>
+                <tr><td>Brand Audit</td><td>100%</td><td>Jun 30</td><td>Elena Volkov</td><td><span class="t-status completed">Completed</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASKS -->
+      <div class="dash-section" id="section-tasks">
+        <div class="panel">
+          <div class="panel-head"><h3>My Tasks</h3><span class="action">+ Add Task</span></div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="task-item"><div class="task-check done">✓</div><div class="task-text done">Review homepage design mockups</div><span class="task-priority low">Low</span><div class="task-date">Jul 10</div></div>
+            <div class="task-item"><div class="task-check done">✓</div><div class="task-text done">Approve color palette for brand</div><span class="task-priority medium">Med</span><div class="task-date">Jul 12</div></div>
+            <div class="task-item"><div class="task-check"></div><div class="task-text">Provide product catalog for store setup</div><span class="task-priority high">High</span><div class="task-date">Jul 16</div></div>
+            <div class="task-item"><div class="task-check"></div><div class="task-text">Review checkout flow wireframes</div><span class="task-priority high">High</span><div class="task-date">Jul 18</div></div>
+            <div class="task-item"><div class="task-check"></div><div class="task-text">Send logo files (SVG + PNG)</div><span class="task-priority medium">Med</span><div class="task-date">Jul 19</div></div>
+            <div class="task-item"><div class="task-check done">✓</div><div class="task-text done">Complete onboarding questionnaire</div><span class="task-priority low">Low</span><div class="task-date">Jul 05</div></div>
+            <div class="task-item"><div class="task-check done">✓</div><div class="task-text done">Approve project timeline</div><span class="task-priority medium">Med</span><div class="task-date">Jul 06</div></div>
+            <div class="task-item"><div class="task-check done">✓</div><div class="task-text done">Provide competitor references</div><span class="task-priority low">Low</span><div class="task-date">Jul 08</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESSAGES -->
+      <div class="dash-section" id="section-messages">
+        <div class="panel">
+          <div class="panel-head"><h3>Messages</h3></div>
+          <div class="activity-list">
+            <div class="activity-item"><div class="ai-icon">JL</div><div class="ai-text"><div class="t">Jordan Lee — Lead Developer</div><div class="s">"Hi Sarah, the new checkout flow is ready for your review. Can we schedule a call this week?"</div></div><div class="ai-time">2h</div></div>
+            <div class="activity-item"><div class="ai-icon">MR</div><div class="ai-text"><div class="t">Maya Rodriguez — Creative Director</div><div class="s">"I've uploaded 3 homepage variations. Let me know which direction you prefer!"</div></div><div class="ai-time">5h</div></div>
+            <div class="activity-item"><div class="ai-icon">NB</div><div class="ai-text"><div class="t">Nina Brooks — Project Manager</div><div class="s">"Weekly update: We're on track with all milestones. Phase 2 starts Monday."</div></div><div class="ai-time">1d</div></div>
+            <div class="activity-item"><div class="ai-icon">MW</div><div class="ai-text"><div class="t">Marcus Webb — SEO Strategist</div><div class="s">"Initial keyword research is done. I'll send the full report by Wednesday."</div></div><div class="ai-time">2d</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILES -->
+      <div class="dash-section" id="section-files">
+        <div class="panel">
+          <div class="panel-head"><h3>Shared Files</h3><span class="action">Upload File</span></div>
+          <div class="file-grid">
+            <div class="file-card"><div class="fc-icon">📄</div><div class="fc-name">Brand-Guidelines-v2.pdf</div><div class="fc-size">2.4 MB</div></div>
+            <div class="file-card"><div class="fc-icon">🖼</div><div class="fc-name">Homepage-Mockup-01.png</div><div class="fc-size">5.1 MB</div></div>
+            <div class="file-card"><div class="fc-icon">🖼</div><div class="fc-name">Homepage-Mockup-02.png</div><div class="fc-size">4.8 MB</div></div>
+            <div class="file-card"><div class="fc-icon">🖼</div><div class="fc-name">Homepage-Mockup-03.png</div><div class="fc-size">5.3 MB</div></div>
+            <div class="file-card"><div class="fc-icon">📊</div><div class="fc-name">Project-Timeline.xlsx</div><div class="fc-size">340 KB</div></div>
+            <div class="file-card"><div class="fc-icon">📄</div><div class="fc-name">Proposal-ShopWave.pdf</div><div class="fc-size">1.2 MB</div></div>
+            <div class="file-card"><div class="fc-icon">🎨</div><div class="fc-name">Logo-Variations.zip</div><div class="fc-size">12.6 MB</div></div>
+            <div class="file-card"><div class="fc-icon">📝</div><div class="fc-name">Requirements.docx</div><div class="fc-size">89 KB</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="dash-section" id="section-profile">
+        <div class="panel profile-card">
+          <div class="p-avatar">SM</div>
+          <div class="p-name">Sarah Mitchell</div>
+          <div class="p-role">Client · ShopWave</div>
+          <div class="p-info">
+            <div class="pi"><div class="l">Email</div><div class="v">sarah@shopwave.io</div></div>
+            <div class="pi"><div class="l">Phone</div><div class="v">+1 415 555 0188</div></div>
+            <div class="pi"><div class="l">Company</div><div class="v">ShopWave Inc.</div></div>
+            <div class="pi"><div class="l">Member Since</div><div class="v">January 2025</div></div>
+            <div class="pi"><div class="l">Projects</div><div class="v">3 active</div></div>
+            <div class="pi"><div class="l">Total Invested</div><div class="v">$32,000</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="dash-section" id="section-settings">
+        <div class="panel">
+          <div class="panel-head"><h3>Settings</h3></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+            <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Full Name</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="Sarah Mitchell" /></div>
+            <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Email</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="sarah@shopwave.io" /></div>
+            <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Phone</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="+1 415 555 0188" /></div>
+            <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Company</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="ShopWave Inc." /></div>
+          </div>
+          <div style="margin-top:24px"><button style="padding:12px 28px;border-radius:10px;background:var(--grad);color:#fff;font-weight:600;font-size:14px;cursor:pointer;border:none">Save Changes</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var sidebar=document.getElementById('sidebar'),hamburger=document.getElementById('hamburger'),sideOverlay=document.getElementById('sideOverlay'),sidebarClose=document.getElementById('sidebarClose');
+    function openSidebar(){sidebar.classList.add('open');sideOverlay.classList.add('show');hamburger.classList.add('active');document.body.classList.add('lock')}
+    function closeSidebar(){sidebar.classList.remove('open');sideOverlay.classList.remove('show');hamburger.classList.remove('active');document.body.classList.remove('lock')}
+    hamburger.addEventListener('click',openSidebar);
+    sidebarClose.addEventListener('click',closeSidebar);
+    sideOverlay.addEventListener('click',closeSidebar);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSidebar()});
+
+    var navLinks=document.querySelectorAll('.nav-link'),sections=document.querySelectorAll('.dash-section'),pageTitle=document.getElementById('pageTitle');
+    var titles={dashboard:'My Dashboard',projects:'My Projects',tasks:'Tasks',messages:'Messages',files:'Files',profile:'Profile',settings:'Settings'};
+    navLinks.forEach(function(link){
+      link.addEventListener('click',function(e){
+        e.preventDefault();var sec=link.getAttribute('data-section');if(!sec)return;
+        navLinks.forEach(function(l){l.classList.remove('active')});link.classList.add('active');
+        sections.forEach(function(s){s.classList.remove('active')});
+        document.getElementById('section-'+sec).classList.add('active');
+        pageTitle.textContent=titles[sec]||'Dashboard';
+        if(window.innerWidth<=1024)closeSidebar();
+        /* Animate progress bars on dashboard */
+        if(sec==='dashboard')setTimeout(animateBars,100);
+      });
+    });
+
+    var darkToggle=document.getElementById('darkToggle');
+    function setDark(isDark){document.body.classList.toggle('dark',isDark);darkToggle.textContent=isDark?'☀️':'🌙';localStorage.setItem('np_dark',isDark?'1':'0')}
+    var sd=localStorage.getItem('np_dark');setDark(sd===null?true:sd==='1');
+    darkToggle.addEventListener('click',function(){setDark(!document.body.classList.contains('dark'))});
+
+    document.getElementById('logoutBtn').addEventListener('click',function(e){e.preventDefault();localStorage.removeItem('novapixel_user');window.location.href='login.html'});
+
+    /* TASK CHECK TOGGLE */
+    document.querySelectorAll('.task-check').forEach(function(tc){
+      tc.addEventListener('click',function(){
+        tc.classList.toggle('done');
+        var text=tc.nextElementSibling;
+        if(text)text.classList.toggle('done');
+        if(tc.classList.contains('done'))tc.textContent='✓';else tc.textContent='';
+      });
+    });
+
+    /* PROGRESS BAR ANIMATION */
+    function animateBars(){
+      document.querySelectorAll('.progress-fill').forEach(function(f){
+        var w=f.getAttribute('data-w');
+        f.style.width='0';
+        setTimeout(function(){f.style.width=w+'%'},50);
+      });
+    }
+    setTimeout(animateBars,300);
+  </script>
+</body>
+</html>

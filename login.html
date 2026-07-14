@@ -1,92 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Log in — Meridian & Co.</title>
-<meta name="description" content="Sign in to your Meridian & Co. account to access your dashboard."/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{--bg:#0a0c11;--surface:#11141c;--surface-2:#161a24;--line:rgba(255,255,255,.08);--text:#eef1f6;--muted:#8e97a8;--accent:#e5b567;--accent-2:#7c9cff}
-  body{background:var(--bg);color:var(--text);font-family:"Inter",sans-serif;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
-  a{color:inherit;text-decoration:none}
-  .container{max-width:1200px;margin:0 auto;padding:0 24px;width:100%}
-  h1,h2,h3{font-family:"Fraunces",serif;letter-spacing:-.02em}
-  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
-  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:rgba(10,12,17,.6);border-bottom:1px solid var(--line)}
-  nav.top .row{display:flex;align-items:center;justify-content:space-between;height:72px}
-  .brand{font-family:"Fraunces",serif;font-size:20px}.brand span{color:var(--accent)}
-  .menu{display:flex;gap:32px}.menu a{font-size:14px;color:var(--muted)}.menu a:hover{color:var(--text)}
-  .cta{display:inline-flex;padding:10px 18px;border:1px solid var(--accent);color:var(--accent);border-radius:999px;font-size:13px;cursor:pointer;background:none;font-family:inherit}
-  .cta.solid{background:var(--accent);color:#0a0c11;border-color:var(--accent)}
-  .cta.ghost{border-color:var(--line);color:var(--muted)}
-  main{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px;background:radial-gradient(800px 400px at 30% 20%,rgba(229,181,103,.08),transparent 60%),radial-gradient(700px 400px at 80% 80%,rgba(124,156,255,.08),transparent 60%)}
-  .card{max-width:460px;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:40px}
-  .card h1{font-size:32px;margin:10px 0 8px}
-  .card>p{color:var(--muted);font-size:14px;margin-bottom:28px}
-  .field{margin-bottom:16px}
-  label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-  input,select{width:100%;padding:14px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;color:var(--text);font-size:14px;font-family:inherit;transition:border-color .2s}
-  input:focus,select:focus{outline:0;border-color:var(--accent)}
-  .role-picker{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .role{padding:16px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;cursor:pointer;text-align:left;transition:all .2s;font-family:inherit;color:var(--text)}
-  .role:hover{border-color:rgba(229,181,103,.4)}
-  .role.selected{border-color:var(--accent);background:rgba(229,181,103,.08)}
-  .role b{display:block;font-size:14px;margin-bottom:4px}
-  .role span{font-size:12px;color:var(--muted)}
-  .submit{width:100%;margin-top:12px;padding:14px;background:var(--accent);color:#0a0c11;border:0;border-radius:12px;font-weight:600;cursor:pointer;font-family:inherit;font-size:14px;transition:filter .2s}
-  .submit:hover{filter:brightness(1.08)}
-  .alt{margin-top:20px;text-align:center;font-size:13px;color:var(--muted)}
-  .alt a{color:var(--accent)}
-  .err{color:#e57373;font-size:12px;margin-top:8px;display:none}
-  footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Login to NovaPixel Agency — access your admin or client dashboard." />
+  <title>Login — NovaPixel Agency</title>
+  <style>
+    :root{
+      --primary:#111827;--secondary:#7C3AED;--accent:#06B6D4;--highlight:#F43F5E;
+      --bg:#F8FAFC;--card:#FFFFFF;--grad:linear-gradient(135deg,#7C3AED,#06B6D4);
+      --grad-soft:linear-gradient(135deg,rgba(124,58,237,.12),rgba(6,182,212,.12));
+      --text:#1e293b;--muted:#64748b;--line:rgba(124,58,237,.14);
+      --radius:20px;--radius-sm:12px;--shadow:0 10px 40px rgba(17,24,39,.08);
+      --shadow-lg:0 24px 64px rgba(17,24,39,.14);
+      --glass:rgba(255,255,255,.65);--glass-border:rgba(255,255,255,.5);
+      --ease:cubic-bezier(.22,1,.36,1);
+      --font:'Segoe UI',system-ui,-apple-system,sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);color:var(--text);background:var(--primary);overflow-x:hidden;line-height:1.6;min-height:100vh}
+    a{text-decoration:none;color:inherit}
+    ul{list-style:none}
+    button{font-family:inherit;cursor:pointer;border:none;background:none}
+    section{position:relative}
+
+    #loader{position:fixed;inset:0;z-index:9999;background:var(--primary);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .6s,visibility .6s}
+    #loader.hidden{opacity:0;visibility:hidden}
+    .loader-ring{width:56px;height:56px;border:4px solid rgba(124,58,237,.2);border-top-color:var(--secondary);border-right-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+    .loader-text{color:#fff;font-size:14px;letter-spacing:3px;font-weight:600;text-transform:uppercase;opacity:.7}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ANIMATED BACKGROUND */
+    .auth-bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+    .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.4;animation:float 10s ease-in-out infinite}
+    .orb-1{width:500px;height:500px;background:var(--secondary);top:-150px;left:-150px}
+    .orb-2{width:400px;height:400px;background:var(--accent);bottom:-100px;right:-100px;animation-delay:2s}
+    .orb-3{width:300px;height:300px;background:var(--highlight);top:50%;left:60%;animation-delay:4s;opacity:.2}
+    @keyframes float{0%,100%{transform:translateY(0) translateX(0)}50%{transform:translateY(-50px) translateX(30px)}}
+    .grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%)}
+
+    /* NAV */
+    .auth-nav{position:relative;z-index:10;padding:24px;text-align:center}
+    .auth-nav .logo{display:inline-flex;align-items:center;gap:10px;font-size:22px;font-weight:800;letter-spacing:-.5px;color:#fff}
+    .auth-nav .logo-mark{width:38px;height:38px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;font-weight:900;box-shadow:0 6px 20px rgba(124,58,237,.35);transition:transform .4s var(--ease)}
+    .auth-nav .logo:hover .logo-mark{transform:rotate(180deg) scale(1.05)}
+    .auth-nav .logo-text span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .auth-nav .back-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:14px;color:rgba(255,255,255,.6);transition:color .3s}
+    .auth-nav .back-link:hover{color:var(--accent)}
+
+    /* AUTH CONTAINER */
+    .auth-wrap{position:relative;z-index:5;min-height:calc(100vh - 120px);display:flex;align-items:center;justify-content:center;padding:20px 24px 60px}
+    .auth-card{width:100%;max-width:460px;background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:28px;padding:44px 40px;box-shadow:var(--shadow-lg),0 0 80px rgba(124,58,237,.1);animation:cardIn .8s var(--ease) both}
+    @keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:none}}
+    .auth-head{text-align:center;margin-bottom:32px}
+    .auth-head .icon{width:60px;height:60px;background:var(--grad);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;margin:0 auto 16px;box-shadow:0 8px 24px rgba(124,58,237,.35)}
+    .auth-head h1{font-size:26px;font-weight:800;color:var(--primary);margin-bottom:6px}
+    .auth-head p{font-size:15px;color:var(--muted)}
+
+    /* ROLE SELECT */
+    .role-select{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+    .role-btn{padding:14px;border-radius:var(--radius-sm);border:2px solid rgba(124,58,237,.12);background:rgba(255,255,255,.5);cursor:pointer;transition:all .35s var(--ease);text-align:center;font-size:14px;font-weight:600;color:var(--muted)}
+    .role-btn .ri{font-size:24px;display:block;margin-bottom:6px}
+    .role-btn:hover{border-color:var(--secondary);color:var(--secondary)}
+    .role-btn.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(124,58,237,.3)}
+
+    /* FORM */
+    .form-group{margin-bottom:20px}
+    .form-group label{display:block;font-size:14px;font-weight:600;margin-bottom:8px;color:var(--primary)}
+    .input-wrap{position:relative}
+    .input-wrap .icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--muted);pointer-events:none}
+    .form-control{width:100%;padding:14px 18px 14px 46px;border:2px solid rgba(17,24,39,.1);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;transition:all .3s var(--ease);background:rgba(255,255,255,.7);color:var(--text)}
+    .form-control:focus{outline:none;border-color:var(--secondary);background:#fff;box-shadow:0 0 0 4px rgba(124,58,237,.08)}
+    .form-control.error{border-color:var(--highlight)}
+    .input-wrap .toggle-pw{position:absolute;right:16px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px;color:var(--muted);transition:color .3s;user-select:none}
+    .input-wrap .toggle-pw:hover{color:var(--secondary)}
+    .error-msg{display:none;font-size:12px;color:var(--highlight);margin-top:6px;font-weight:500}
+    .error-msg.show{display:block}
+    .form-success{display:none;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:20px;color:#16a34a;font-size:14px;font-weight:600;align-items:center;gap:10px}
+    .form-success.show{display:flex}
+    .form-error{display:none;background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:20px;color:var(--highlight);font-size:14px;font-weight:600;align-items:center;gap:10px}
+    .form-error.show{display:flex}
+
+    .form-options{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+    .checkbox-wrap{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);cursor:pointer;user-select:none}
+    .checkbox-wrap input{width:18px;height:18px;accent-color:var(--secondary);cursor:pointer}
+    .forgot-link{font-size:14px;font-weight:600;color:var(--secondary);transition:color .3s}
+    .forgot-link:hover{color:var(--accent)}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:var(--radius-sm);font-size:15px;font-weight:600;transition:all .35s var(--ease);position:relative;overflow:hidden;white-space:nowrap;cursor:pointer;font-family:inherit}
+    .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 24px rgba(124,58,237,.3);width:100%}
+    .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);transition:left .6s var(--ease)}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(124,58,237,.42)}
+    .btn-primary:hover::after{left:100%}
+
+    .auth-divider{display:flex;align-items:center;gap:16px;margin:28px 0;text-align:center}
+    .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:rgba(17,24,39,.1)}
+    .auth-divider span{font-size:13px;color:var(--muted);font-weight:500}
+    .social-row{display:flex;gap:12px}
+    .social-btn{flex:1;padding:12px;border-radius:var(--radius-sm);border:2px solid rgba(17,24,39,.1);background:rgba(255,255,255,.5);cursor:pointer;font-size:14px;font-weight:600;color:var(--primary);transition:all .3s var(--ease);display:flex;align-items:center;justify-content:center;gap:8px}
+    .social-btn:hover{border-color:var(--secondary);transform:translateY(-2px)}
+
+    .auth-foot{text-align:center;margin-top:28px;font-size:15px;color:var(--muted)}
+    .auth-foot a{color:var(--secondary);font-weight:700;transition:color .3s}
+    .auth-foot a:hover{color:var(--accent)}
+
+    .demo-hint{margin-top:20px;padding:14px 18px;background:rgba(124,58,237,.06);border:1px dashed rgba(124,58,237,.2);border-radius:var(--radius-sm);font-size:13px;color:var(--muted);text-align:center}
+    .demo-hint b{color:var(--secondary)}
+
+    .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:10000;mix-blend-mode:difference;transition:transform .15s var(--ease),width .2s,height .2s}
+    .cursor-dot{width:8px;height:8px;background:#fff;transform:translate(-50%,-50%)}
+    .cursor-ring{width:36px;height:36px;border:2px solid rgba(255,255,255,.5);transform:translate(-50%,-50%);transition:transform .25s var(--ease),width .25s,height .25s,opacity .2s}
+    .cursor-ring.grow{width:60px;height:60px;background:rgba(124,58,237,.15);border-color:var(--secondary)}
+    @media(max-width:1024px){.cursor-dot,.cursor-ring{display:none}}
+
+    @media(max-width:480px){
+      .auth-card{padding:32px 24px}
+      .role-select{grid-template-columns:1fr}
+      .social-row{flex-direction:column}
+    }
+  </style>
 </head>
 <body>
-<nav class="top"><div class="container row">
-  <a href="index.html" class="brand">Meridian<span>&Co.</span></a>
-  <div class="menu"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="contact.html">Contact</a></div>
-  <a href="signup.html" class="cta">Sign up</a>
-</div></nav>
+  <div id="loader"><div class="loader-ring"></div><div class="loader-text">NovaPixel</div></div>
+  <div class="cursor-dot"></div><div class="cursor-ring"></div>
 
-<main>
-  <form class="card" id="loginForm">
-    <div class="eyebrow">Welcome back</div>
-    <h1>Log in to your dashboard</h1>
-    <p>Select your role and enter your credentials to continue.</p>
+  <div class="auth-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+  <div class="grid-bg"></div>
 
-    <div class="field">
-      <label>Role</label>
-      <div class="role-picker" id="roles">
-        <button type="button" class="role selected" data-role="client"><b>Client</b><span>View engagements & milestones</span></button>
-        <button type="button" class="role" data-role="admin"><b>Admin</b><span>Manage team, projects & billing</span></button>
+  <nav class="auth-nav">
+    <a href="index.html" class="logo"><div class="logo-mark">N</div><div class="logo-text">Nova<span>Pixel</span></div></a>
+    <br><a href="index.html" class="back-link">← Back to Home</a>
+  </nav>
+
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-head">
+        <div class="icon">🔐</div>
+        <h1>Welcome Back</h1>
+        <p>Sign in to access your dashboard</p>
       </div>
+
+      <div class="form-error" id="formError"><span>⚠</span> Invalid email or password. Please try again.</div>
+      <div class="form-success" id="formSuccess"><span>✓</span> Login successful! Redirecting to your dashboard...</div>
+
+      <!-- ROLE SELECT -->
+      <div class="role-select" id="roleSelect">
+        <button type="button" class="role-btn active" data-role="admin"><span class="ri">🛡️</span>Admin</button>
+        <button type="button" class="role-btn" data-role="client"><span class="ri">👤</span>Client</button>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label>Email Address</label>
+          <div class="input-wrap">
+            <span class="icon">✉</span>
+            <input type="email" class="form-control" name="email" placeholder="you@example.com" autocomplete="email" />
+          </div>
+          <div class="error-msg">Please enter a valid email address.</div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-wrap">
+            <span class="icon">🔒</span>
+            <input type="password" class="form-control" name="password" placeholder="Enter your password" autocomplete="current-password" />
+            <span class="toggle-pw" id="togglePw">👁</span>
+          </div>
+          <div class="error-msg">Password must be at least 6 characters.</div>
+        </div>
+        <div class="form-options">
+          <label class="checkbox-wrap"><input type="checkbox" name="remember" /> Remember me</label>
+          <a href="#" class="forgot-link" id="forgotPw">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign In →</button>
+      </form>
+
+      <div class="demo-hint">
+        <b>Demo:</b> Use any email + password (6+ chars) to log in. You'll be redirected based on your role selection.
+      </div>
+
+      <div class="auth-divider"><span>or continue with</span></div>
+      <div class="social-row">
+        <button class="social-btn" type="button">G Google</button>
+        <button class="social-btn" type="button">in LinkedIn</button>
+      </div>
+
+      <div class="auth-foot">Don't have an account? <a href="signup.html">Sign up free →</a></div>
     </div>
-    <div class="field"><label>Email</label><input type="email" id="email" placeholder="you@company.com" required></div>
-    <div class="field"><label>Password</label><input type="password" id="pw" placeholder="••••••••" required></div>
-    <div class="err" id="err">Please fill in all fields.</div>
-    <button type="submit" class="submit">Continue to dashboard →</button>
-    <div class="alt">Don't have an account? <a href="signup.html">Sign up</a></div>
-  </form>
-</main>
+  </div>
 
-<footer>© 2026 Meridian & Co.</footer>
+  <script>
+    window.addEventListener('load',function(){setTimeout(function(){document.getElementById('loader').classList.add('hidden')},800)});
+    (function(){
+      if(window.matchMedia('(max-width:1024px)').matches)return;
+      var dot=document.querySelector('.cursor-dot'),ring=document.querySelector('.cursor-ring'),mx=0,my=0,rx=0,ry=0;
+      document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+      function anim(){rx+=(mx-rx)*.2;ry+=(my-ry)*.2;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)}anim();
+      document.querySelectorAll('a,button,input,.role-btn,.toggle-pw').forEach(function(el){el.addEventListener('mouseenter',function(){ring.classList.add('grow')});el.addEventListener('mouseleave',function(){ring.classList.remove('grow')})});
+    })();
 
-<script>
-let role='client';
-document.querySelectorAll('#roles .role').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('#roles .role').forEach(x=>x.classList.remove('selected'));
-  b.classList.add('selected');
-  role=b.dataset.role;
-}));
-document.getElementById('loginForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const em=document.getElementById('email').value.trim();
-  const pw=document.getElementById('pw').value.trim();
-  if(!em||!pw){document.getElementById('err').style.display='block';return;}
-  try{localStorage.setItem('meridian_user',JSON.stringify({email:em,role}));}catch(_){}
-  window.location.href = role==='admin' ? 'admin-dashboard.html' : 'client-dashboard.html';
-});
-</script>
-</body></html>
+    /* ROLE SELECT */
+    var currentRole='admin';
+    document.querySelectorAll('.role-btn').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        document.querySelectorAll('.role-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        currentRole=btn.getAttribute('data-role');
+      });
+    });
+
+    /* TOGGLE PASSWORD */
+    var togglePw=document.getElementById('togglePw');
+    var pwInput=document.querySelector('[name=password]');
+    togglePw.addEventListener('click',function(){
+      if(pwInput.type==='password'){pwInput.type='text';togglePw.textContent='🙈'}
+      else{pwInput.type='password';togglePw.textContent='👁'}
+    });
+
+    /* FORM VALIDATION + LOGIN */
+    var form=document.getElementById('loginForm');
+    var emailInput=form.querySelector('[name=email]');
+    var pwField=form.querySelector('[name=password]');
+    function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}
+    function clearError(input){input.classList.remove('error');var g=input.parentElement.parentElement;var em=g.querySelector('.error-msg');if(em)em.classList.remove('show')}
+    function showError(input){input.classList.add('error');var g=input.parentElement.parentElement;var em=g.querySelector('.error-msg');if(em)em.classList.add('show')}
+
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var valid=true;
+      if(!validEmail(emailInput.value.trim())){showError(emailInput);valid=false}else clearError(emailInput);
+      if(pwField.value.length<6){showError(pwField);valid=false}else clearError(pwField);
+
+      if(!valid)return;
+      var formError=document.getElementById('formError');
+      var formSuccess=document.getElementById('formSuccess');
+
+      /* STORE USER SESSION IN LOCALSTORAGE */
+      var user={
+        email:emailInput.value.trim(),
+        role:currentRole,
+        loginTime:Date.now()
+      };
+      localStorage.setItem('novapixel_user',JSON.stringify(user));
+
+      formError.classList.remove('show');
+      formSuccess.classList.add('show');
+      form.reset();
+
+      setTimeout(function(){
+        if(currentRole==='admin')window.location.href='admin.html';
+        else window.location.href='client.html';
+      },1500);
+    });
+
+    /* CLEAR ERROR ON INPUT */
+    form.querySelectorAll('.form-control').forEach(function(inp){
+      inp.addEventListener('input',function(){clearError(inp)});
+    });
+
+    /* FORGOT PASSWORD */
+    document.getElementById('forgotPw').addEventListener('click',function(e){
+      e.preventDefault();
+      var email=prompt('Enter your email to reset your password:');
+      if(email&&validEmail(email))alert('Password reset link sent to '+email+'. Check your inbox!');
+      else if(email)alert('Please enter a valid email address.');
+    });
+
+    document.querySelectorAll('.btn').forEach(function(btn){btn.addEventListener('click',function(e){var r=document.createElement('span'),rect=btn.getBoundingClientRect(),s=Math.max(rect.width,rect.height);r.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,.4);width:'+s+'px;height:'+s+'px;left:'+(e.clientX-rect.left-s/2)+'px;top:'+(e.clientY-rect.top-s/2)+'px;transform:scale(0);animation:rip .6s ease-out;pointer-events:none';btn.appendChild(r);setTimeout(function(){r.remove()},600)})});
+    var st=document.createElement('style');st.textContent='@keyframes rip{to{transform:scale(2.5);opacity:0}}';document.head.appendChild(st);
+  </script>
+</body>
+</html>
