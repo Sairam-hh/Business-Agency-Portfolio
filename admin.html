@@ -231,8 +231,8 @@
     </nav>
     <div class="sidebar-footer">
       <div class="sidebar-user">
-        <div class="avatar">AC</div>
-        <div class="info"><div class="name">Alex Chen</div><div class="role">Administrator</div></div>
+        <div class="avatar" id="userAvatar">AC</div>
+        <div class="info"><div class="name" id="userName">Alex Chen</div><div class="role" id="userRole">Administrator</div><div class="role" id="userEmail" style="opacity:.7;word-break:break-all">alex@stackly.agency</div></div>
       </div>
     </div>
   </aside>
@@ -457,10 +457,10 @@
           <div class="panel">
             <div class="panel-head"><h3>Account Settings</h3></div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-              <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Display Name</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="Alex Chen" /></div>
-              <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Email</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="alex@stackly.agency" /></div>
+              <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Display Name</label><input id="settingsName" style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="Alex Chen" /></div>
+              <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Email</label><input id="settingsEmail" style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="alex@stackly.agency" /></div>
               <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Phone</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="+1 415 555 0192" /></div>
-              <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Role</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="Administrator" disabled /></div>
+              <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Role</label><input id="settingsRole" style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="Administrator" disabled /></div>
             </div>
             <div style="margin-top:24px"><button class="btn-ripple" style="padding:12px 28px;border-radius:10px;background:var(--grad);color:#fff;font-weight:600;font-size:14px;cursor:pointer;border:none;box-shadow:var(--glow)">Save Changes</button></div>
           </div>
@@ -470,6 +470,13 @@
   </div>
 
   <script>
+    /* AUTH GUARD — must run immediately, before anything renders */
+    (function(){
+      if(localStorage.getItem('isLoggedIn')!=='true'){
+        window.location.replace('login.html');
+      }
+    })();
+
     /* CUSTOM CURSOR (desktop only) */
     (function(){
       if(window.matchMedia('(max-width:1024px)').matches)return;
@@ -536,11 +543,52 @@
     notifBtn.addEventListener('click',function(e){e.stopPropagation();notifPanel.classList.toggle('show')});
     document.addEventListener('click',function(e){if(!notifPanel.contains(e.target)&&e.target!==notifBtn)notifPanel.classList.remove('show')});
 
+    /* LOGGED-IN USER INFO */
+    function initialsFromName(name){
+      var parts=(name||'').trim().split(/\s+/).filter(Boolean);
+      if(!parts.length)return 'U';
+      var first=parts[0].charAt(0);
+      var last=parts.length>1?parts[parts.length-1].charAt(0):'';
+      return (first+last).toUpperCase();
+    }
+    (function populateUserInfo(){
+      var displayName=localStorage.getItem('displayName')||'User';
+      var email=localStorage.getItem('email')||'';
+      var role=localStorage.getItem('role')||'Admin';
+      var roleLabel=role==='Admin'?'Administrator':role;
+
+      var nameEl=document.getElementById('userName');
+      var roleEl=document.getElementById('userRole');
+      var emailEl=document.getElementById('userEmail');
+      var avatarEl=document.getElementById('userAvatar');
+      if(nameEl)nameEl.textContent=displayName;
+      if(roleEl)roleEl.textContent=roleLabel;
+      if(emailEl)emailEl.textContent=email;
+      if(avatarEl)avatarEl.textContent=initialsFromName(displayName);
+
+      var settingsName=document.getElementById('settingsName');
+      var settingsEmail=document.getElementById('settingsEmail');
+      var settingsRole=document.getElementById('settingsRole');
+      if(settingsName)settingsName.value=displayName;
+      if(settingsEmail)settingsEmail.value=email;
+      if(settingsRole)settingsRole.value=roleLabel;
+    })();
+
     /* LOGOUT */
     document.getElementById('logoutBtn').addEventListener('click',function(e){
       e.preventDefault();
-      localStorage.removeItem('novapixel_user');
-      window.location.href='login.html';
+      localStorage.removeItem('email');
+      localStorage.removeItem('role');
+      localStorage.removeItem('displayName');
+      localStorage.removeItem('isLoggedIn');
+      window.location.replace('login.html');
+    });
+
+    /* RE-CHECK AUTH WHEN PAGE IS RESTORED FROM BACK/FORWARD CACHE */
+    window.addEventListener('pageshow',function(){
+      if(localStorage.getItem('isLoggedIn')!=='true'){
+        window.location.replace('login.html');
+      }
     });
 
     /* CHARTS — simple canvas bar chart */

@@ -225,6 +225,19 @@
       else{pwInput.type='password';togglePw.textContent='👁'}
     });
 
+    /* GENERATE DISPLAY NAME FROM EMAIL */
+    function generateDisplayName(email){
+      var namePart=(email||'').split('@')[0];
+      namePart=namePart.replace(/[0-9]/g,'');           /* remove numbers */
+      namePart=namePart.replace(/[._-]+/g,' ');          /* separators -> space */
+      namePart=namePart.replace(/[^a-zA-Z ]/g,' ');       /* strip other symbols */
+      namePart=namePart.trim().replace(/\s+/g,' ');
+      if(!namePart)namePart='User';
+      return namePart.split(' ').map(function(w){
+        return w.charAt(0).toUpperCase()+w.slice(1).toLowerCase();
+      }).join(' ');
+    }
+
     /* FORM VALIDATION + LOGIN */
     var form=document.getElementById('loginForm');
     var emailInput=form.querySelector('[name=email]');
@@ -250,6 +263,14 @@
         loginTime:Date.now()
       };
       localStorage.setItem('novapixel_user',JSON.stringify(user));
+
+      /* SESSION KEYS USED BY ADMIN/CLIENT DASHBOARDS */
+      var roleDisplay=currentRole==='admin'?'Admin':'Client';
+      var displayName=generateDisplayName(emailInput.value.trim());
+      localStorage.setItem('email',emailInput.value.trim());
+      localStorage.setItem('role',roleDisplay);
+      localStorage.setItem('displayName',displayName);
+      localStorage.setItem('isLoggedIn','true');
 
       formError.classList.remove('show');
       formSuccess.classList.add('show');

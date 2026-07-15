@@ -237,8 +237,8 @@
     </nav>
     <div class="sidebar-footer">
       <div class="sidebar-user">
-        <div class="avatar">SM</div>
-        <div class="info"><div class="name">Sarah Mitchell</div><div class="role">Client · ShopWave</div></div>
+        <div class="avatar" id="userAvatar">SM</div>
+        <div class="info"><div class="name" id="userName">Sarah Mitchell</div><div class="role" id="userRole">Client</div><div class="role" id="userEmail" style="opacity:.7;word-break:break-all">sarah@shopwave.io</div></div>
       </div>
     </div>
   </aside>
@@ -375,11 +375,11 @@
       <!-- PROFILE -->
       <div class="dash-section" id="section-profile">
         <div class="panel profile-card">
-          <div class="p-avatar">SM</div>
-          <div class="p-name">Sarah Mitchell</div>
-          <div class="p-role">Client · ShopWave</div>
+          <div class="p-avatar" id="profileAvatar">SM</div>
+          <div class="p-name" id="profileName">Sarah Mitchell</div>
+          <div class="p-role" id="profileRole">Client · ShopWave</div>
           <div class="p-info">
-            <div class="pi"><div class="l">Email</div><div class="v">sarah@shopwave.io</div></div>
+            <div class="pi"><div class="l">Email</div><div class="v" id="profileEmail">sarah@shopwave.io</div></div>
             <div class="pi"><div class="l">Phone</div><div class="v">+1 415 555 0188</div></div>
             <div class="pi"><div class="l">Company</div><div class="v">ShopWave Inc.</div></div>
             <div class="pi"><div class="l">Member Since</div><div class="v">January 2025</div></div>
@@ -394,8 +394,8 @@
         <div class="panel">
           <div class="panel-head"><h3>Settings</h3></div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-            <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Full Name</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="Sarah Mitchell" /></div>
-            <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Email</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="sarah@shopwave.io" /></div>
+            <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Full Name</label><input id="settingsName" style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="Sarah Mitchell" /></div>
+            <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Email</label><input id="settingsEmail" style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="sarah@shopwave.io" /></div>
             <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Phone</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="+1 415 555 0188" /></div>
             <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Company</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="ShopWave Inc." /></div>
           </div>
@@ -406,6 +406,13 @@
   </div>
 
   <script>
+    /* AUTH GUARD — must run immediately, before anything renders */
+    (function(){
+      if(localStorage.getItem('isLoggedIn')!=='true'){
+        window.location.replace('login.html');
+      }
+    })();
+
     /* CUSTOM CURSOR (desktop only) */
     (function(){
       if(window.matchMedia('(max-width:1024px)').matches)return;
@@ -456,7 +463,59 @@
     var sd=localStorage.getItem('np_dark');setDark(sd===null?true:sd==='1');
     darkToggle.addEventListener('click',function(){setDark(!document.body.classList.contains('dark'))});
 
-    document.getElementById('logoutBtn').addEventListener('click',function(e){e.preventDefault();localStorage.removeItem('novapixel_user');window.location.href='login.html'});
+    /* LOGGED-IN USER INFO */
+    function initialsFromName(name){
+      var parts=(name||'').trim().split(/\s+/).filter(Boolean);
+      if(!parts.length)return 'U';
+      var first=parts[0].charAt(0);
+      var last=parts.length>1?parts[parts.length-1].charAt(0):'';
+      return (first+last).toUpperCase();
+    }
+    (function populateUserInfo(){
+      var displayName=localStorage.getItem('displayName')||'User';
+      var email=localStorage.getItem('email')||'';
+      var role=localStorage.getItem('role')||'Client';
+
+      var nameEl=document.getElementById('userName');
+      var roleEl=document.getElementById('userRole');
+      var emailEl=document.getElementById('userEmail');
+      var avatarEl=document.getElementById('userAvatar');
+      if(nameEl)nameEl.textContent=displayName;
+      if(roleEl)roleEl.textContent=role;
+      if(emailEl)emailEl.textContent=email;
+      if(avatarEl)avatarEl.textContent=initialsFromName(displayName);
+
+      var profileName=document.getElementById('profileName');
+      var profileRole=document.getElementById('profileRole');
+      var profileEmail=document.getElementById('profileEmail');
+      var profileAvatar=document.getElementById('profileAvatar');
+      if(profileName)profileName.textContent=displayName;
+      if(profileRole)profileRole.textContent=role;
+      if(profileEmail)profileEmail.textContent=email;
+      if(profileAvatar)profileAvatar.textContent=initialsFromName(displayName);
+
+      var settingsName=document.getElementById('settingsName');
+      var settingsEmail=document.getElementById('settingsEmail');
+      if(settingsName)settingsName.value=displayName;
+      if(settingsEmail)settingsEmail.value=email;
+    })();
+
+    /* LOGOUT */
+    document.getElementById('logoutBtn').addEventListener('click',function(e){
+      e.preventDefault();
+      localStorage.removeItem('email');
+      localStorage.removeItem('role');
+      localStorage.removeItem('displayName');
+      localStorage.removeItem('isLoggedIn');
+      window.location.replace('login.html');
+    });
+
+    /* RE-CHECK AUTH WHEN PAGE IS RESTORED FROM BACK/FORWARD CACHE */
+    window.addEventListener('pageshow',function(){
+      if(localStorage.getItem('isLoggedIn')!=='true'){
+        window.location.replace('login.html');
+      }
+    });
 
     /* TASK CHECK TOGGLE */
     document.querySelectorAll('.task-check').forEach(function(tc){
