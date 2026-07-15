@@ -462,7 +462,7 @@
               <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Phone</label><input style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="+1 415 555 0192" /></div>
               <div><label style="font-size:14px;font-weight:600;display:block;margin-bottom:8px">Role</label><input id="settingsRole" style="width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px" value="Administrator" disabled /></div>
             </div>
-            <div style="margin-top:24px"><button class="btn-ripple" style="padding:12px 28px;border-radius:10px;background:var(--grad);color:#fff;font-weight:600;font-size:14px;cursor:pointer;border:none;box-shadow:var(--glow)">Save Changes</button></div>
+            <div style="margin-top:24px"><button class="btn-ripple" style="padding:12px 28px;border-radius:10px;background:var(--grad);color:#fff;font-weight:600;font-size:14px;cursor:pointer;border:none;box-shadow:var(--glow)" onclick="saveSettings()">Save Changes</button></div>
           </div>
         </div>
       </div>
@@ -470,6 +470,11 @@
   </div>
 
   <script>
+
+    function saveSettings(){
+     window.location.href='admin-error.html';
+    }     
+
     /* AUTH GUARD — must run immediately, before anything renders */
     (function(){
       if(localStorage.getItem('isLoggedIn')!=='true'){
