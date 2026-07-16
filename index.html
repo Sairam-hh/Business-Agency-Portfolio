@@ -182,11 +182,67 @@
     .stats{background:var(--primary);color:#fff;position:relative;overflow:hidden}
     .stats::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(124,58,237,.2),transparent 50%),radial-gradient(circle at 80% 50%,rgba(6,182,212,.15),transparent 50%)}
     .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative;z-index:2}
-    .stat-item{text-align:center;padding:24px;border-radius:var(--radius);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:all .4s var(--ease)}
-    .stat-item:hover{transform:translateY(-8px);background:rgba(255,255,255,.08);border-color:rgba(124,58,237,.4)}
-    .stat-item .icon{font-size:32px;margin-bottom:12px}
-    .stat-item .num{font-size:44px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-    .stat-item .label{font-size:14px;color:rgba(255,255,255,.6);margin-top:4px}
+    .stat-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    padding:28px 22px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    transition:all .45s ease;
+    cursor:pointer;
+    transform-style:preserve-3d;
+}
+
+.stat-item::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    padding:2px;
+    background:linear-gradient(135deg,#7C3AED,#06B6D4,#F43F5E);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    opacity:0;
+    transition:.4s;
+}
+
+.stat-item:hover{
+    transform:perspective(1000px) rotateX(8deg) rotateY(-8deg) translateY(-12px);
+    box-shadow:0 25px 50px rgba(124,58,237,.35);
+}
+
+.stat-item:hover::before{
+    opacity:1;
+}
+
+.stat-item .icon{
+    transition:.4s;
+}
+
+.stat-item:hover .icon{
+    transform:translateY(-8px) scale(1.25);
+}
+
+.stat-item .num{
+    transition:.4s;
+}
+
+.stat-item:hover .num{
+    color:#fff;
+    transform:scale(1.15);
+}
+
+.stat-item .label{
+    transition:.4s;
+}
+
+.stat-item:hover .label{
+    color:#06B6D4;
+}
 
     /* ============ SERVICES ============ */
     .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
@@ -349,6 +405,114 @@
 
     .logo img{height:120px;width:auto;}
     
+
+    .footer-contact li:hover{
+    background:linear-gradient(135deg,
+        rgba(124,58,237,.25),
+        rgba(6,182,212,.20));
+    box-shadow:0 8px 20px rgba(124,58,237,.25);
+    transform:translateX(8px);
+}
+
+
+/* ===== Mobile Footer Fix ===== */
+@media (max-width:768px){
+
+  .footer-contact li{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+    line-height:1.6;
+    padding:12px;
+  }
+
+  .footer-contact li .icon{
+    flex-shrink:0;
+    margin-top:3px;
+  }
+
+  .footer-newsletter{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width:100%;
+  }
+
+  .footer-newsletter input,
+  .footer-newsletter button{
+    width:100%;
+  }
+
+  .footer-newsletter button{
+    justify-content:center;
+  }
+
+  .footer-col{
+    width:100%;
+  }
+
+  .footer-col h4{
+    margin-bottom:16px;
+  }
+}
+
+.hero-stat{
+    position:relative;
+    padding:20px 24px;
+    border-radius:18px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(124,58,237,.15);
+    transition:all .4s cubic-bezier(.22,1,.36,1);
+    cursor:pointer;
+    overflow:hidden;
+}
+
+.hero-stat::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+    transition:left .7s ease;
+}
+
+.hero-stat:hover{
+    transform:translateY(-10px) scale(1.05);
+    background:rgba(255,255,255,.14);
+    border-color:var(--secondary);
+    box-shadow:0 20px 40px rgba(124,58,237,.25);
+}
+
+.hero-stat:hover::before{
+    left:100%;
+}
+
+.hero-stat .num{
+    transition:all .35s ease;
+}
+
+.hero-stat:hover .num{
+    transform:scale(1.12);
+    text-shadow:0 0 18px rgba(124,58,237,.45);
+}
+
+.hero-stat .label{
+    transition:color .35s ease;
+}
+
+.hero-stat:hover .label{
+    color:var(--secondary);
+}
   </style>
 </head>
 <body>
@@ -396,7 +560,7 @@
     <a href="contact.html">Contact</a>
     <div class="mobile-cta">
       <a href="login.html" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.2)">Login</a>
-      <a href="signup.html" class="btn btn-primary">Get Started</a>
+      <a href="signup.html" class="btn btn-primary">signup</a>
     </div>
   </aside>
 
@@ -428,7 +592,7 @@
       </div>
       <div class="hero-visual reveal right">
         <div class="hero-card-main">
-          <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Team collaborating on a creative project" loading="eager" />
+          <img src="./gallery/home-page-1.webp" alt="Team collaborating on a creative project" loading="eager" />
           <h3>Brand Redesign — Lumen Tech</h3>
           <div class="tags">
             <span class="tag">UI/UX</span>
@@ -457,7 +621,7 @@
     <div class="container">
       <div class="intro-grid">
         <div class="intro-visual reveal left">
-          <img src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Stackly team working in the studio" loading="lazy" />
+          <img src="./gallery/home-page-2.webp" alt="Stackly team working in the studio" loading="lazy" />
           <div class="play">▶</div>
         </div>
         <div class="intro-text reveal right">
@@ -564,7 +728,7 @@
       </div>
       <div class="portfolio-grid">
         <div class="portfolio-item reveal zoom">
-          <img src="https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=800" alt="E-commerce website project" loading="lazy" />
+          <img src="./gallery/home-page-3.webp" alt="E-commerce website project" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="view">↗</div>
             <div class="cat">Web Development</div>
@@ -572,7 +736,7 @@
           </div>
         </div>
         <div class="portfolio-item reveal zoom">
-          <img src="https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mobile app project" loading="lazy" />
+          <img src="./gallery/home-page-4.webp" alt="Mobile app project" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="view">↗</div>
             <div class="cat">Mobile App</div>
@@ -580,7 +744,7 @@
           </div>
         </div>
         <div class="portfolio-item reveal zoom">
-          <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Branding project" loading="lazy" />
+          <img src="./gallery/home-page-5.webp" alt="Branding project" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="view">↗</div>
             <div class="cat">Branding</div>
@@ -588,7 +752,7 @@
           </div>
         </div>
         <div class="portfolio-item reveal zoom">
-          <img src="https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Marketing campaign project" loading="lazy" />
+          <img src="./gallery/home-page-6.webp" alt="Marketing campaign project" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="view">↗</div>
             <div class="cat">Marketing</div>
@@ -596,7 +760,7 @@
           </div>
         </div>
         <div class="portfolio-item reveal zoom">
-          <img src="https://images.pexels.com/photos/179739/pexels-photo-179739.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Corporate website project" loading="lazy" />
+          <img src="./gallery/home-page-7.webp" alt="Corporate website project" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="view">↗</div>
             <div class="cat">Corporate</div>
@@ -604,7 +768,7 @@
           </div>
         </div>
         <div class="portfolio-item reveal zoom">
-          <img src="https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&w=800" alt="AI automation project" loading="lazy" />
+          <img src="./gallery/home-page-8.webp" alt="AI automation project" loading="lazy" />
           <div class="portfolio-overlay">
             <div class="view">↗</div>
             <div class="cat">AI Automation</div>
@@ -699,7 +863,7 @@
                 <div class="stars">★★★★★</div>
                 <p class="quote">"Stackly transformed our outdated website into a conversion machine. Our leads tripled within the first quarter after launch. The team is incredibly responsive and talented."</p>
                 <div class="person">
-                  <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=120" alt="Sarah Mitchell" loading="lazy" />
+                  <img src="./gallery/home-page-9.webp" alt="Sarah Mitchell" loading="lazy" />
                   <div style="text-align:left"><div class="name">Sarah Mitchell</div><div class="role">CEO, ShopWave</div></div>
                 </div>
               </div>
@@ -709,7 +873,7 @@
                 <div class="stars">★★★★★</div>
                 <p class="quote">"The mobile app Stackly built for us hit 100K downloads in the first month. Their attention to UX detail is unmatched. I'd recommend them to any serious founder."</p>
                 <div class="person">
-                  <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=120" alt="James Carter" loading="lazy" />
+                  <img src="./gallery/home-page-10.webp" alt="James Carter" loading="lazy" />
                   <div style="text-align:left"><div class="name">James Carter</div><div class="role">Founder, FitTrack</div></div>
                 </div>
               </div>
@@ -719,7 +883,7 @@
                 <div class="stars">★★★★★</div>
                 <p class="quote">"From branding to website to SEO, Stackly handled everything seamlessly. They feel like an extension of our own team. Our brand finally looks as premium as our product."</p>
                 <div class="person">
-                  <img src="https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=120" alt="Priya Sharma" loading="lazy" />
+                  <img src="./gallery/home-page-11.webp" alt="Priya Sharma" loading="lazy" />
                   <div style="text-align:left"><div class="name">Priya Sharma</div><div class="role">CMO, Vertex Corp</div></div>
                 </div>
               </div>
@@ -835,8 +999,8 @@
             <li><span class="icon">☎</span> +1 (415) 555-0192</li>
           </ul>
           <div class="footer-newsletter">
-            <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
-            <button>Subscribe</button>
+              <input type="email" id="newsletterEmail" placeholder="Your email">
+              <button id="subscribeBtn">Subscribe</button>
           </div>
         </div>
       </div>
@@ -974,6 +1138,33 @@
     var style=document.createElement('style');
     style.textContent='@keyframes rip{to{transform:scale(2.5);opacity:0}}';
     document.head.appendChild(style);
+
+
+    const subscribeBtn = document.getElementById("subscribeBtn");
+const emailInput = document.getElementById("newsletterEmail");
+
+subscribeBtn.addEventListener("click", function () {
+    const email = emailInput.value.trim();
+
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.(com|in|org|net|edu|gov)$/i;
+
+    if (email === "") {
+        alert("Please enter your email address.");
+        emailInput.focus();
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        emailInput.focus();
+        return;
+    }
+
+    alert("🎉 Thank you for subscribing!");
+
+    emailInput.value = "";
+});
   </script>
 </body>
 </html>

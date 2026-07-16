@@ -96,7 +96,14 @@
     .section-head h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     .section-head p{font-size:17px;color:var(--muted)}
 
-    .page-hero{padding:160px 0 80px;background:var(--primary);color:#fff;position:relative;overflow:hidden;text-align:center}
+.page-hero{
+    padding:160px 0 80px;
+    background:linear-gradient(135deg,#EDE9FE,#DDD6FE,#E0F2FE);
+    color:var(--primary);
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+}
     .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(124,58,237,.25),transparent 50%),radial-gradient(circle at 70% 50%,rgba(6,182,212,.18),transparent 50%)}
     .page-hero .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%)}
     .page-hero .content{position:relative;z-index:2}
@@ -226,6 +233,130 @@
       object-fit:contain;
     }
     @media(max-width:640px){.logo img{height:100px;max-width:120px}}
+
+    .footer-contact li:hover{
+    background:linear-gradient(135deg,
+        rgba(124,58,237,.25),
+        rgba(6,182,212,.20));
+    box-shadow:0 8px 20px rgba(124,58,237,.25);
+    transform:translateX(8px);
+}
+
+/* ===== Mobile Footer Fix ===== */
+@media (max-width:768px){
+
+  .footer-contact li{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+    line-height:1.6;
+    padding:12px;
+  }
+
+  .footer-contact li .icon{
+    flex-shrink:0;
+    margin-top:3px;
+  }
+
+  .footer-newsletter{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width:100%;
+  }
+
+  .footer-newsletter input,
+  .footer-newsletter button{
+    width:100%;
+  }
+
+  .footer-newsletter button{
+    justify-content:center;
+  }
+
+  .footer-col{
+    width:100%;
+  }
+
+  .footer-col h4{
+    margin-bottom:16px;
+  }
+}
+
+.story-card{
+    position:relative;
+    overflow:hidden;
+    background:#fff;
+    border:1px solid rgba(124,58,237,.12);
+    border-radius:22px;
+    padding:32px;
+    transition:all .45s cubic-bezier(.22,1,.36,1);
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+
+.story-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,
+        rgba(124,58,237,.08),
+        rgba(6,182,212,.08));
+    opacity:0;
+    transition:.45s;
+}
+
+.story-card::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:4px;
+    height:100%;
+    background:linear-gradient(180deg,#7C3AED,#06B6D4);
+    transform:scaleY(0);
+    transform-origin:top;
+    transition:.45s;
+}
+
+.story-card:hover{
+    transform:translateY(-14px);
+    box-shadow:0 25px 60px rgba(124,58,237,.18);
+}
+
+.story-card:hover::before{
+    opacity:1;
+}
+
+.story-card:hover::after{
+    transform:scaleY(1);
+}
+
+.story-card > *{
+    position:relative;
+    z-index:2;
+}
+
+
+.case-item:hover{
+    transform:translateY(-12px);
+    box-shadow:0 25px 60px rgba(124,58,237,.18);
+}
+
+.case-item:hover .case-img img{
+    transform:scale(1.08);
+}
+
+.case-item:hover h3{
+    color:var(--secondary);
+}
+
+.case-item:hover .case-stat{
+    background:rgba(124,58,237,.08);
+    transform:translateY(-5px);
+}
   </style>
 </head>
 <body>
@@ -261,7 +392,7 @@
     <a href="contact.html">Contact</a>
     <div class="mobile-cta">
       <a href="login.html" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.2)">Login</a>
-      <a href="signup.html" class="btn btn-primary">Get Started</a>
+      <a href="signup.html" class="btn btn-primary">signup</a>
     </div>
   </aside>
 
@@ -294,51 +425,51 @@
       </div>
       <div class="portfolio-grid" id="portfolioGrid">
         <div class="portfolio-item reveal zoom" data-cat="web">
-          <img src="https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ShopWave e-commerce" loading="lazy" />
+          <img src="./gallery/pr-page-1.webp" alt="ShopWave e-commerce" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">Web Development</div><h3>ShopWave E-commerce</h3><p>Full-stack online store with 3x conversion rate.</p></div>
         </div>
         <div class="portfolio-item reveal zoom" data-cat="mobile">
-          <img src="https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800" alt="FitTrack app" loading="lazy" />
+          <img src="./gallery/pr-page-2.webp" alt="FitTrack app" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">Mobile App</div><h3>FitTrack Mobile App</h3><p>Health & fitness app with 100K downloads in month one.</p></div>
         </div>
         <div class="portfolio-item reveal zoom" data-cat="branding">
-          <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800" alt="BrewCraft branding" loading="lazy" />
+          <img src="./gallery/pr-page-3.webp" alt="BrewCraft branding" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">Branding</div><h3>BrewCraft Brand Identity</h3><p>Complete visual identity for a craft coffee chain.</p></div>
         </div>
         <div class="portfolio-item reveal zoom" data-cat="marketing">
-          <img src="https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg?auto=compress&cs=tinysrgb&w=800" alt="GrowthLab campaign" loading="lazy" />
+          <img src="./gallery/pr-page-4.webp" alt="GrowthLab campaign" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">Marketing Campaign</div><h3>GrowthLab Campaign</h3><p>Multi-channel campaign that drove 400% ROAS.</p></div>
         </div>
         <div class="portfolio-item reveal zoom" data-cat="corporate">
-          <img src="https://images.pexels.com/photos/179739/pexels-photo-179739.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Vertex corporate site" loading="lazy" />
+          <img src="./gallery/pr-page-5.webp" alt="Vertex corporate site" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">Corporate</div><h3>Vertex Corporate Site</h3><p>Enterprise platform serving 50K+ monthly visitors.</p></div>
         </div>
         <div class="portfolio-item reveal zoom" data-cat="web">
-          <img src="https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&w=800" alt="NovaAI chatbot" loading="lazy" />
+          <img src="./gallery/pr-page-6.webp" alt="NovaAI chatbot" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">AI Automation</div><h3>NovaAI Chatbot</h3><p>AI-powered support bot reducing tickets by 60%.</p></div>
         </div>
         <div class="portfolio-item reveal zoom" data-cat="mobile">
-          <img src="https://images.pexels.com/photos/607826/pexels-photo-607826.jpeg?auto=compress&cs=tinysrgb&w=800" alt="PayFlow banking app" loading="lazy" />
+          <img src="./gallery/pr-page-7.webp" alt="PayFlow banking app" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">Mobile App</div><h3>PayFlow Banking App</h3><p>Fintech app with bank-grade security and UX.</p></div>
         </div>
         <div class="portfolio-item reveal zoom" data-cat="branding">
-          <img src="https://tse4.mm.bing.net/th/id/OIP.fK_tN53dXr0N6BP6_TV09gHaFK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Lumen Tech rebrand" loading="lazy" />
+          <img src="./gallery/pr-page-8 (1).webp" alt="Lumen Tech rebrand" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">Branding</div><h3>Lumen Tech Rebrand</h3><p>Brand refresh for a Series B SaaS company.</p></div>
         </div>
         <div class="portfolio-item reveal zoom" data-cat="marketing">
-          <img src="https://images.pexels.com/photos/905163/pexels-photo-905163.jpeg?auto=compress&cs=tinysrgb&w=800" alt="EcoBloom social campaign" loading="lazy" />
+          <img src="./gallery/pr-page-9.webp" alt="EcoBloom social campaign" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">Marketing Campaign</div><h3>EcoBloom Social Push</h3><p>Sustainability campaign reaching 2M impressions.</p></div>
         </div>
         <div class="portfolio-item reveal zoom" data-cat="corporate">
-          <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Helix corporate portal" loading="lazy" />
+          <img src="./gallery/pr-page-10.webp" alt="Helix corporate portal" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">Corporate</div><h3>Helix Corporate Portal</h3><p>Internal portal for a 500-person consulting firm.</p></div>
         </div>
         <div class="portfolio-item reveal zoom" data-cat="web">
-          <img src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=800" alt="DineOut restaurant platform" loading="lazy" />
+          <img src="./gallery/pr-page-11.webp" alt="DineOut restaurant platform" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">Web Development</div><h3>DineOut Reservation</h3><p>Restaurant booking platform with real-time availability.</p></div>
         </div>
         <div class="portfolio-item reveal zoom" data-cat="mobile">
-          <img src="https://cdn.dribbble.com/userupload/7500426/file/original-aa21efcbc45bb0eff49a388dcb613316.png?resize=1600x1200" alt="Wanderlust travel app" loading="lazy" />
+          <img src="./gallery/pr-page-12 (1).webp" alt="Wanderlust travel app" loading="lazy" />
           <div class="portfolio-overlay"><div class="view">↗</div><div class="cat">Mobile App</div><h3>Wanderlust Travel App</h3><p>Trip planning app featured on the App Store.</p></div>
         </div>
       </div>
@@ -355,7 +486,7 @@
       </div>
       <div class="case-list">
         <div class="case-item reveal left">
-          <div class="case-img"><img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ShopWave case study" loading="lazy" /></div>
+          <div class="case-img"><img src="./gallery/pr-page-13.webp" alt="ShopWave case study" loading="lazy" /></div>
           <div class="case-content">
             <div class="case-tag">E-commerce / Web Development</div>
             <h3>ShopWave: From 2% to 6% Conversion Rate</h3>
@@ -369,7 +500,7 @@
           </div>
         </div>
         <div class="case-item reveal right">
-          <div class="case-img"><img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" alt="FitTrack case study" loading="lazy" /></div>
+          <div class="case-img"><img src="./gallery/pr-page-14.webp" alt="FitTrack case study" loading="lazy" /></div>
           <div class="case-content">
             <div class="case-tag">Mobile App / HealthTech</div>
             <h3>FitTrack: 100K Downloads in 30 Days</h3>
@@ -383,7 +514,7 @@
           </div>
         </div>
         <div class="case-item reveal left">
-          <div class="case-img"><img src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" alt="GrowthLab case study" loading="lazy" /></div>
+          <div class="case-img"><img src="./gallery/pr-page-15.webp" alt="GrowthLab case study" loading="lazy" /></div>
           <div class="case-content">
             <div class="case-tag">Digital Marketing / Campaign</div>
             <h3>GrowthLab: 400% Return on Ad Spend</h3>
@@ -412,19 +543,19 @@
         <div class="story-card reveal">
           <div class="quote">"</div>
           <p>Our online store went from barely breaking even to generating $2M+ per month. The Stackly team understood our brand and delivered beyond expectations.</p>
-          <div class="person"><img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Sarah Mitchell" loading="lazy" /><div><div class="name">Sarah Mitchell</div><div class="role">CEO, ShopWave</div></div></div>
+          <div class="person"><img src="./gallery/home-page-9.webp" alt="Sarah Mitchell" loading="lazy" /><div><div class="name">Sarah Mitchell</div><div class="role">CEO, ShopWave</div></div></div>
           <div class="results"><div class="r"><div class="num">3x</div><div class="label">Conversion</div></div><div class="r"><div class="num">+180%</div><div class="label">Revenue</div></div></div>
         </div>
         <div class="story-card reveal">
           <div class="quote">"</div>
           <p>The mobile app Stackly built for us was featured on the App Store within two weeks of launch. Their attention to detail in UX is truly world-class.</p>
-          <div class="person"><img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100" alt="James Carter" loading="lazy" /><div><div class="name">James Carter</div><div class="role">Founder, FitTrack</div></div></div>
+          <div class="person"><img src="./gallery/home-page-10.webp" alt="James Carter" loading="lazy" /><div><div class="name">James Carter</div><div class="role">Founder, FitTrack</div></div></div>
           <div class="results"><div class="r"><div class="num">100K</div><div class="label">Downloads</div></div><div class="r"><div class="num">4.8★</div><div class="label">Rating</div></div></div>
         </div>
         <div class="story-card reveal">
           <div class="quote">"</div>
           <p>From branding to website to SEO, Stackly handled everything. Our brand finally looks as premium as our product. Leads have never been better.</p>
-          <div class="person"><img src="https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Priya Sharma" loading="lazy" /><div><div class="name">Priya Sharma</div><div class="role">CMO, Vertex Corp</div></div></div>
+          <div class="person"><img src="./gallery/home-page-11.webp" alt="Priya Sharma" loading="lazy" /><div><div class="name">Priya Sharma</div><div class="role">CMO, Vertex Corp</div></div></div>
           <div class="results"><div class="r"><div class="num">+250%</div><div class="label">Organic Traffic</div></div><div class="r"><div class="num">-60%</div><div class="label">CAC</div></div></div>
         </div>
       </div>
@@ -498,8 +629,8 @@
             <li><span class="icon">☎</span> +1 (415) 555-0192</li>
           </ul>
           <div class="footer-newsletter">
-            <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
-            <button>Subscribe</button>
+              <input type="email" id="newsletterEmail" placeholder="Your email">
+              <button id="subscribeBtn">Subscribe</button>
           </div>
         </div>
       </div>
@@ -560,6 +691,32 @@
 
     document.querySelectorAll('.btn').forEach(function(btn){btn.addEventListener('click',function(e){var r=document.createElement('span'),rect=btn.getBoundingClientRect(),s=Math.max(rect.width,rect.height);r.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,.4);width:'+s+'px;height:'+s+'px;left:'+(e.clientX-rect.left-s/2)+'px;top:'+(e.clientY-rect.top-s/2)+'px;transform:scale(0);animation:rip .6s ease-out;pointer-events:none';btn.appendChild(r);setTimeout(function(){r.remove()},600)})});
     var st=document.createElement('style');st.textContent='@keyframes rip{to{transform:scale(2.5);opacity:0}}';document.head.appendChild(st);
+
+    const subscribeBtn = document.getElementById("subscribeBtn");
+const emailInput = document.getElementById("newsletterEmail");
+
+subscribeBtn.addEventListener("click", function () {
+    const email = emailInput.value.trim();
+
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.(com|in|org|net|edu|gov)$/i;
+
+    if (email === "") {
+        alert("Please enter your email address.");
+        emailInput.focus();
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        emailInput.focus();
+        return;
+    }
+
+    alert("🎉 Thank you for subscribing!");
+
+    emailInput.value = "";
+});
   </script>
 </body>
 </html>

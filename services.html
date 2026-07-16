@@ -95,7 +95,14 @@
     .section-head h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     .section-head p{font-size:17px;color:var(--muted)}
 
-    .page-hero{padding:160px 0 80px;background:var(--primary);color:#fff;position:relative;overflow:hidden;text-align:center}
+.page-hero{
+    padding:160px 0 80px;
+    background:linear-gradient(135deg,#EDE9FE,#DDD6FE,#E0F2FE);
+    color:var(--primary);
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+}
     .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(124,58,237,.25),transparent 50%),radial-gradient(circle at 70% 50%,rgba(6,182,212,.18),transparent 50%)}
     .page-hero .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%)}
     .page-hero .content{position:relative;z-index:2}
@@ -239,6 +246,57 @@
       height:100px;
       width:auto;
     }
+
+    .footer-contact li:hover{
+    background:linear-gradient(135deg,
+        rgba(124,58,237,.25),
+        rgba(6,182,212,.20));
+    box-shadow:0 8px 20px rgba(124,58,237,.25);
+    transform:translateX(8px);
+}
+
+/* ===== Mobile Footer Fix ===== */
+@media (max-width:768px){
+
+  .footer-contact li{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+    line-height:1.6;
+    padding:12px;
+  }
+
+  .footer-contact li .icon{
+    flex-shrink:0;
+    margin-top:3px;
+  }
+
+  .footer-newsletter{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width:100%;
+  }
+
+  .footer-newsletter input,
+  .footer-newsletter button{
+    width:100%;
+  }
+
+  .footer-newsletter button{
+    justify-content:center;
+  }
+
+  .footer-col{
+    width:100%;
+  }
+
+  .footer-col h4{
+    margin-bottom:16px;
+  }
+}
   </style>
 </head>
 <body>
@@ -505,8 +563,8 @@
             <li><span class="icon">☎</span> +1 (415) 555-0192</li>
           </ul>
           <div class="footer-newsletter">
-            <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
-            <button>Subscribe</button>
+              <input type="email" id="newsletterEmail" placeholder="Your email">
+              <button id="subscribeBtn">Subscribe</button>
           </div>
         </div>
       </div>
@@ -559,6 +617,32 @@
     });
     document.querySelectorAll('.btn').forEach(function(btn){btn.addEventListener('click',function(e){var r=document.createElement('span'),rect=btn.getBoundingClientRect(),s=Math.max(rect.width,rect.height);r.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,.4);width:'+s+'px;height:'+s+'px;left:'+(e.clientX-rect.left-s/2)+'px;top:'+(e.clientY-rect.top-s/2)+'px;transform:scale(0);animation:rip .6s ease-out;pointer-events:none';btn.appendChild(r);setTimeout(function(){r.remove()},600)})});
     var st=document.createElement('style');st.textContent='@keyframes rip{to{transform:scale(2.5);opacity:0}}';document.head.appendChild(st);
+
+    const subscribeBtn = document.getElementById("subscribeBtn");
+const emailInput = document.getElementById("newsletterEmail");
+
+subscribeBtn.addEventListener("click", function () {
+    const email = emailInput.value.trim();
+
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.(com|in|org|net|edu|gov)$/i;
+
+    if (email === "") {
+        alert("Please enter your email address.");
+        emailInput.focus();
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        emailInput.focus();
+        return;
+    }
+
+    alert("🎉 Thank you for subscribing!");
+
+    emailInput.value = "";
+});
   </script>
 </body>
 </html>

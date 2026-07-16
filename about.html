@@ -97,7 +97,14 @@
     .section-head p{font-size:17px;color:var(--muted)}
 
     /* PAGE HERO */
-    .page-hero{padding:160px 0 80px;background:var(--primary);color:#fff;position:relative;overflow:hidden;text-align:center}
+.page-hero{
+    padding:160px 0 80px;
+    background:linear-gradient(135deg,#EDE9FE,#DDD6FE,#E0F2FE);
+    color:var(--primary);
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+}
     .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(124,58,237,.25),transparent 50%),radial-gradient(circle at 70% 50%,rgba(6,182,212,.18),transparent 50%)}
     .page-hero .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,#000 20%,transparent 70%)}
     .page-hero .content{position:relative;z-index:2}
@@ -197,7 +204,7 @@
 
     /* OFFICE GALLERY */
     .gallery{background:linear-gradient(180deg,#f1f5f9,#f8fafc)}
-    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:240px;gap:20px}
+    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:240px;grid-auto-flow:dense;gap:20px}
     .gallery-item{border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow);cursor:pointer}
     .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
     .gallery-item:hover img{transform:scale(1.1)}
@@ -278,6 +285,57 @@
       object-fit:contain;
     }
     @media(max-width:640px){.logo img{height:100px;max-width:120px}}
+
+    .footer-contact li:hover{
+    background:linear-gradient(135deg,
+        rgba(124,58,237,.25),
+        rgba(6,182,212,.20));
+    box-shadow:0 8px 20px rgba(124,58,237,.25);
+    transform:translateX(8px);
+}
+
+/* ===== Mobile Footer Fix ===== */
+@media (max-width:768px){
+
+  .footer-contact li{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+    line-height:1.6;
+    padding:12px;
+  }
+
+  .footer-contact li .icon{
+    flex-shrink:0;
+    margin-top:3px;
+  }
+
+  .footer-newsletter{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width:100%;
+  }
+
+  .footer-newsletter input,
+  .footer-newsletter button{
+    width:100%;
+  }
+
+  .footer-newsletter button{
+    justify-content:center;
+  }
+
+  .footer-col{
+    width:100%;
+  }
+
+  .footer-col h4{
+    margin-bottom:16px;
+  }
+}
   </style>
 </head>
 <body>
@@ -313,7 +371,7 @@
     <a href="contact.html">Contact</a>
     <div class="mobile-cta">
       <a href="login.html" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.2)">Login</a>
-      <a href="signup.html" class="btn btn-primary">Get Started</a>
+      <a href="signup.html" class="btn btn-primary">signup</a>
     </div>
   </aside>
 
@@ -333,7 +391,7 @@
     <div class="container">
       <div class="story-grid">
         <div class="story-visual reveal left">
-          <img src="https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=800" alt="stackly office" loading="lazy" />
+          <img src="./gallery/about-page-1.webp" alt="stackly office" loading="lazy" />
           <div class="badge"><div class="y">2018</div><div class="l">Year Founded</div></div>
         </div>
         <div class="story-text reveal right">
@@ -342,7 +400,7 @@
           <p>Stackly started in a small co-working space in San Francisco with just two founders, a laptop, and a bold vision: to make premium digital design accessible to growing brands. What began as a side project quickly turned into a full-fledged agency as word spread about our quality and speed.</p>
           <p>Over seven years, we've grown into a 40-person team serving clients across 35 countries. We've shipped over 250 projects — from startup landing pages to enterprise-grade platforms — and picked up 12 industry awards along the way. But our mission hasn't changed: build digital experiences that genuinely move the needle for our clients.</p>
           <div class="story-signature">
-            <img src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=100" style="width:54px;height:54px;border-radius:50%;object-fit:cover" alt="Founder" loading="lazy" />
+            <img src="./gallery/home-page-11.webp" style="width:54px;height:54px;border-radius:50%;object-fit:cover" alt="Founder" loading="lazy" />
             <div><div class="name">Alex Chen</div><div class="role">Co-Founder & CEO</div></div>
           </div>
         </div>
@@ -401,49 +459,49 @@
       </div>
       <div class="team-grid">
         <div class="team-card reveal">
-          <div class="team-img"><img src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Alex Chen" loading="lazy" />
+          <div class="team-img"><img src="./gallery/about-page-2.webp" alt="Alex Chen" loading="lazy" />
             <div class="team-overlay"><div class="team-social"><a href="404.html">in</a><a href="404.html">𝕏</a></div></div>
           </div>
           <div class="team-info"><h3>Alex Chen</h3><div class="role">Co-Founder & CEO</div></div>
         </div>
         <div class="team-card reveal">
-          <div class="team-img"><img src="https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Maya Rodriguez" loading="lazy" />
+          <div class="team-img"><img src="./gallery/about-page-3.webp" alt="Maya Rodriguez" loading="lazy" />
             <div class="team-overlay"><div class="team-social"><a href="404.html">in</a><a href="404.html">𝕏</a></div></div>
           </div>
           <div class="team-info"><h3>Maya Rodriguez</h3><div class="role">Creative Director</div></div>
         </div>
         <div class="team-card reveal">
-          <div class="team-img"><img src="https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Jordan Lee" loading="lazy" />
+          <div class="team-img"><img src="./gallery/about-page-4.webp" alt="Jordan Lee" loading="lazy" />
             <div class="team-overlay"><div class="team-social"><a href="404.html">in</a><a href="404.html">𝕏</a></div></div>
           </div>
           <div class="team-info"><h3>Jordan Lee</h3><div class="role">Lead Developer</div></div>
         </div>
         <div class="team-card reveal">
-          <div class="team-img"><img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Sofia Park" loading="lazy" />
+          <div class="team-img"><img src="./gallery/about-page-5.webp" alt="Sofia Park" loading="lazy" />
             <div class="team-overlay"><div class="team-social"><a href="404.html">in</a><a href="404.html">𝕏</a></div></div>
           </div>
           <div class="team-info"><h3>Sofia Park</h3><div class="role">UX Research Lead</div></div>
         </div>
         <div class="team-card reveal">
-          <div class="team-img"><img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Marcus Webb" loading="lazy" />
+          <div class="team-img"><img src="./gallery/about-page-6 (1).webp" alt="Marcus Webb" loading="lazy" />
             <div class="team-overlay"><div class="team-social"><a href="404.html">in</a><a href="404.html">𝕏</a></div></div>
           </div>
           <div class="team-info"><h3>Marcus Webb</h3><div class="role">SEO Strategist</div></div>
         </div>
         <div class="team-card reveal">
-          <div class="team-img"><img src="https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Elena Volkov" loading="lazy" />
+          <div class="team-img"><img src="./gallery/about-page-7.webp" alt="Elena Volkov" loading="lazy" />
             <div class="team-overlay"><div class="team-social"><a href="404.html">in</a><a href="404.html">𝕏</a></div></div>
           </div>
           <div class="team-info"><h3>Elena Volkov</h3><div class="role">Brand Designer</div></div>
         </div>
         <div class="team-card reveal">
-          <div class="team-img"><img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Dev Patel" loading="lazy" />
+          <div class="team-img"><img src="./gallery/about-page-8.webp" alt="Dev Patel" loading="lazy" />
             <div class="team-overlay"><div class="team-social"><a href="404.html">in</a><a href="404.html">𝕏</a></div></div>
           </div>
           <div class="team-info"><h3>Dev Patel</h3><div class="role">Mobile Engineer</div></div>
         </div>
         <div class="team-card reveal">
-          <div class="team-img"><img src="https://images.pexels.com/photos/5905902/pexels-photo-5905902.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Nina Brooks" loading="lazy" />
+          <div class="team-img"><img src="./gallery/about-page-9 (1).webp" alt="Nina Brooks" loading="lazy" />
             <div class="team-overlay"><div class="team-social"><a href="404.html">in</a><a href="404.html">𝕏</a></div></div>
           </div>
           <div class="team-info"><h3>Nina Brooks</h3><div class="role">Project Manager</div></div>
@@ -487,7 +545,7 @@
           <div class="skill-item"><div class="top"><span class="name">AI & Automation</span><span class="pct">82%</span></div><div class="skill-bar"><div class="skill-fill" data-width="82"></div></div></div>
         </div>
         <div class="skills-visual reveal right">
-          <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Team collaboration" loading="lazy" />
+          <img src="./gallery/about-page-10.webp" alt="Team collaboration" loading="lazy" />
         </div>
       </div>
     </div>
@@ -519,12 +577,12 @@
         <p>Where creativity meets productivity — take a peek inside our working environment.</p>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item wide reveal zoom"><img src="https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Open office space" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
-        <div class="gallery-item reveal zoom"><img src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Meeting room" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
-        <div class="gallery-item tall reveal zoom"><img src="https://i.pinimg.com/originals/45/b4/d5/45b4d5beaf75efd5cd6d85b9dfeaa9c2.jpg" alt="Creative workspace" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
-        <div class="gallery-item reveal zoom"><img src="https://images.pexels.com/photos/3144580/pexels-photo-3144580.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Lounge area" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
-        <div class="gallery-item wide reveal zoom"><img src="https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Design studio" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
-        <div class="gallery-item reveal zoom"><img src="https://tse4.mm.bing.net/th/id/OIP.rzQ9crgLW8tjKb8rIeNj6AHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Collaboration area" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
+        <div class="gallery-item wide reveal zoom"><img src="./gallery/about-page-11.webp" alt="Open office space" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
+        <div class="gallery-item reveal zoom"><img src="./gallery/about-page-12.webp" alt="Meeting room" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
+        <div class="gallery-item tall reveal zoom"><img src="./gallery/about-page-13.webp" alt="Creative workspace" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
+        <div class="gallery-item reveal zoom"><img src="./gallery/about-page-14.webp" alt="Lounge area" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
+        <div class="gallery-item wide reveal zoom"><img src="./gallery/about-page-16.webp" alt="Design studio" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
+        <div class="gallery-item reveal zoom"><img src="./gallery/about-page-15 (1).webp" alt="Collaboration area" loading="lazy" /><div class="overlay"><span>⤢</span></div></div>
       </div>
     </div>
   </section>
@@ -596,8 +654,8 @@
             <li><span class="icon">☎</span> +1 (415) 555-0192</li>
           </ul>
           <div class="footer-newsletter">
-            <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
-            <button>Subscribe</button>
+              <input type="email" id="newsletterEmail" placeholder="Your email">
+              <button id="subscribeBtn">Subscribe</button>
           </div>
         </div>
       </div>
@@ -640,6 +698,32 @@
     document.querySelectorAll('.skill-fill').forEach(function(el){skillObserver.observe(el)});
     document.querySelectorAll('.btn').forEach(function(btn){btn.addEventListener('click',function(e){var r=document.createElement('span'),rect=btn.getBoundingClientRect(),s=Math.max(rect.width,rect.height);r.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,.4);width:'+s+'px;height:'+s+'px;left:'+(e.clientX-rect.left-s/2)+'px;top:'+(e.clientY-rect.top-s/2)+'px;transform:scale(0);animation:rip .6s ease-out;pointer-events:none';btn.appendChild(r);setTimeout(function(){r.remove()},600)})});
     var st=document.createElement('style');st.textContent='@keyframes rip{to{transform:scale(2.5);opacity:0}}';document.head.appendChild(st);
+
+    const subscribeBtn = document.getElementById("subscribeBtn");
+const emailInput = document.getElementById("newsletterEmail");
+
+subscribeBtn.addEventListener("click", function () {
+    const email = emailInput.value.trim();
+
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.(com|in|org|net|edu|gov)$/i;
+
+    if (email === "") {
+        alert("Please enter your email address.");
+        emailInput.focus();
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        emailInput.focus();
+        return;
+    }
+
+    alert("🎉 Thank you for subscribing!");
+
+    emailInput.value = "";
+});
   </script>
 </body>
 </html>

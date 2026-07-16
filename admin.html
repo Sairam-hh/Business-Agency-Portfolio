@@ -15,12 +15,12 @@
       --shadow-lg:0 12px 40px rgba(17,24,39,.1);
       --sidebar-w:260px;--ease:cubic-bezier(.22,1,.36,1);
       --font:'Segoe UI',system-ui,-apple-system,sans-serif;
-      --card-glass:rgba(255,255,255,.7);--sidebar-glass:rgba(17,24,39,.75);
+      --card-glass:rgba(255,255,255,.7);--sidebar-glass:rgba(255,255,255,.98);--sidebar-text:#1e293b;--sidebar-text-muted:#64748b;--sidebar-border:rgba(15,23,42,.08);
       --topbar-glass:rgba(255,255,255,.65);--glow:0 8px 32px rgba(124,58,237,.14);
       --glow-lg:0 20px 60px rgba(124,58,237,.22),0 0 0 1px rgba(124,58,237,.08);
     }
     /* DARK MODE — premium deep violet-indigo, not flat black */
-    body.dark{--bg:#1a1333;--card:#241a45;--text:#ece7fb;--muted:#a596d6;--line:rgba(255,255,255,.09);--shadow:0 4px 20px rgba(10,6,26,.35);--shadow-lg:0 12px 40px rgba(10,6,26,.5);--card-glass:rgba(46,33,84,.55);--sidebar-glass:rgba(18,12,38,.82);--topbar-glass:rgba(28,20,52,.6);--glow:0 8px 32px rgba(124,58,237,.3);--glow-lg:0 20px 60px rgba(124,58,237,.4),0 0 0 1px rgba(124,58,237,.18)}
+    body.dark{--bg:#1a1333;--card:#241a45;--text:#ece7fb;--muted:#a596d6;--line:rgba(255,255,255,.09);--shadow:0 4px 20px rgba(10,6,26,.35);--shadow-lg:0 12px 40px rgba(10,6,26,.5);--card-glass:rgba(46,33,84,.55);--sidebar-glass:rgba(255,255,255,.98);--sidebar-text:#1e293b;--sidebar-text-muted:#64748b;--sidebar-border:rgba(15,23,42,.08);--topbar-glass:rgba(28,20,52,.6);--glow:0 8px 32px rgba(124,58,237,.3);--glow-lg:0 20px 60px rgba(124,58,237,.4),0 0 0 1px rgba(124,58,237,.18)}
     body.dark{background:linear-gradient(160deg,#241a4a 0%,#1a1333 45%,#120c28 100%) fixed}
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -49,23 +49,24 @@
     @media(max-width:1024px){.cursor-dot,.cursor-ring{display:none}}
 
     /* SIDEBAR */
-    .sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--sidebar-glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:#fff;display:flex;flex-direction:column;z-index:100;transition:transform .4s var(--ease),background .4s;border-right:1px solid rgba(124,58,237,.18);box-shadow:4px 0 30px rgba(0,0,0,.25)}
+    .sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--sidebar-glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:var(--sidebar-text);display:flex;flex-direction:column;z-index:100;transition:transform .4s var(--ease),background .4s;border-right:1px solid var(--sidebar-border);box-shadow:4px 0 30px rgba(15,23,42,.08)}
     .sidebar::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad)}
-    .sidebar-brand{position:relative;padding:24px;display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08)}
+    .sidebar-brand{position:relative;padding:24px;display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;border-bottom:1px solid var(--sidebar-border)}
     .sidebar-brand .logo-mark{width:36px;height:36px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;flex-shrink:0}
     .sidebar-brand span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .sidebar-brand .logo{display:flex;align-items:center;justify-content:center}
     .sidebar-nav{flex:1;padding:20px 12px;overflow-y:auto}
-    .sidebar-nav .nav-section{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.3);padding:16px 12px 8px;font-weight:700}
-    .sidebar-nav a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);font-size:15px;font-weight:500;color:rgba(255,255,255,.6);transition:all .3s var(--ease);margin-bottom:4px}
-    .sidebar-nav a:hover{background:rgba(255,255,255,.06);color:#fff}
+    .sidebar-nav .nav-section{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--sidebar-text-muted);padding:16px 12px 8px;font-weight:700}
+    .sidebar-nav a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);font-size:15px;font-weight:500;color:var(--sidebar-text-muted);transition:all .3s var(--ease);margin-bottom:4px}
+    .sidebar-nav a:hover{background:rgba(15,23,42,.05);color:var(--sidebar-text)}
     .sidebar-nav a.active{background:var(--grad);color:#fff;box-shadow:0 4px 16px rgba(124,58,237,.3)}
     .sidebar-nav a .icon{font-size:18px;width:22px;text-align:center;flex-shrink:0}
     .sidebar-nav a .badge{margin-left:auto;background:var(--highlight);color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:700}
-    .sidebar-footer{padding:16px;border-top:1px solid rgba(255,255,255,.08)}
+    .sidebar-footer{padding:16px;border-top:1px solid var(--sidebar-border)}
     .sidebar-user{display:flex;align-items:center;gap:12px;padding:8px}
     .sidebar-user .avatar{width:40px;height:40px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex-shrink:0}
-    .sidebar-user .info .name{font-size:14px;font-weight:600;color:#fff}
-    .sidebar-user .info .role{font-size:12px;color:rgba(255,255,255,.4)}
+    .sidebar-user .info .name{font-size:14px;font-weight:600;color:var(--sidebar-text)}
+    .sidebar-user .info .role{font-size:12px;color:var(--sidebar-text-muted)}
 
     /* MAIN */
     .main{position:relative;z-index:5;margin-left:var(--sidebar-w);min-height:100vh;transition:margin .4s var(--ease)}
@@ -167,8 +168,8 @@
     .side-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;opacity:0;visibility:hidden;transition:all .4s}
     .side-overlay.show{opacity:1;visibility:visible}
 
-    .sidebar-close{display:none;position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:20px;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;z-index:101}
-    .sidebar-close:hover{background:var(--highlight);transform:rotate(90deg)}
+    .sidebar-close{display:none;position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(15,23,42,.06);color:var(--sidebar-text);font-size:20px;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;z-index:101}
+    .sidebar-close:hover{background:var(--highlight);color:#fff;transform:rotate(90deg)}
 
     /* RIPPLE */
     .btn-ripple{position:relative;overflow:hidden}
@@ -243,7 +244,7 @@
     <header class="topbar">
       <div class="topbar-left">
         <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-        <h1 id="pageTitle">Dashboard</h1>
+        <h1 id="pageTitle"> Admin-Dashboard</h1>
       </div>
       <div class="topbar-right">
         <div class="search-box"><span class="icon">🔍</span><input type="text" placeholder="Search..." /></div>
@@ -286,11 +287,11 @@
 
         <div class="panels">
           <div class="panel">
-            <div class="panel-head"><h3>Revenue Overview</h3><span class="action">View Report →</span></div>
+            <a href="admin-error.html" class="panel-head"><h3>Revenue Overview</h3><span class="action">View Report →</span></a>
             <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
           </div>
           <div class="panel">
-            <div class="panel-head"><h3>Recent Activity</h3><span class="action">See All →</span></div>
+            <a href="admin-error.html" class="panel-head"><h3>Recent Activity</h3><span class="action">See All →</span></a>
             <div class="activity-list">
               <div class="activity-item"><div class="ai-icon">✅</div><div class="ai-text"><div class="t">ShopWave website launched</div><div class="s">Completed by Jordan Lee</div></div><div class="ai-time">2h</div></div>
               <div class="activity-item"><div class="ai-icon">📝</div><div class="ai-text"><div class="t">New contract signed</div><div class="s">Vertex Corp — $45K project</div></div><div class="ai-time">5h</div></div>
@@ -302,7 +303,7 @@
         </div>
 
         <div class="panel">
-          <div class="panel-head"><h3>Active Projects</h3><span class="action">View All →</span></div>
+          <a href="admin-error.html" class="panel-head"><h3>Active Projects</h3><span class="action">View All →</span></a>
           <div class="table-wrap">
             <table>
               <thead><tr><th>Project</th><th>Client</th><th>Progress</th><th>Deadline</th><th>Status</th></tr></thead>
@@ -328,7 +329,7 @@
           <div class="dash-card"><div class="dc-top"><div class="dc-icon pink">⏸</div></div><div class="dc-value">4</div><div class="dc-label">On Hold</div></div>
         </div>
         <div class="panel">
-          <div class="panel-head"><h3>All Projects</h3><span class="action">+ Add Project</span></div>
+          <a href="admin-error.html" class="panel-head"><h3>All Projects</h3><span class="action">+ Add Project</span></a>
           <div class="table-wrap">
             <table>
               <thead><tr><th>Project</th><th>Client</th><th>Team Lead</th><th>Budget</th><th>Status</th></tr></thead>
@@ -353,7 +354,7 @@
           <div class="dash-card"><div class="dc-top"><div class="dc-icon pink">📈</div></div><div class="dc-value">4.8</div><div class="dc-label">Avg. Rating</div></div>
         </div>
         <div class="panel">
-          <div class="panel-head"><h3>Client Directory</h3><span class="action">+ Add Client</span></div>
+          <a href="admin-error.html" class="panel-head"><h3>Client Directory</h3><span class="action">+ Add Client</span></a>
           <div class="table-wrap">
             <table>
               <thead><tr><th>Client</th><th>Company</th><th>Email</th><th>Projects</th><th>Status</th></tr></thead>
@@ -377,7 +378,7 @@
           <div class="dash-card"><div class="dc-top"><div class="dc-icon green">🌍</div></div><div class="dc-value">12</div><div class="dc-label">Countries</div></div>
         </div>
         <div class="panel">
-          <div class="panel-head"><h3>Team Members</h3><span class="action">+ Invite Member</span></div>
+          <a href="admin-error.html" class="panel-head"><h3>Team Members</h3><span class="action">+ Invite Member</span></a>
           <div class="table-wrap">
             <table>
               <thead><tr><th>Name</th><th>Role</th><th>Department</th><th>Projects</th><th>Status</th></tr></thead>
@@ -396,7 +397,7 @@
       <!-- MESSAGES SECTION -->
       <div class="dash-section" id="section-messages">
         <div class="panel">
-          <div class="panel-head"><h3>Inbox</h3><span class="action">Mark All Read</span></div>
+          <a href="admin-error.html" class="panel-head"><h3>Inbox</h3><span class="action">Mark All Read</span></a>
           <div class="activity-list">
             <div class="activity-item"><div class="ai-icon">💬</div><div class="ai-text"><div class="t">Sarah Mitchell — ShopWave</div><div class="s">"Can we schedule a call to review the new checkout flow?"</div></div><div class="ai-time">5m</div></div>
             <div class="activity-item"><div class="ai-icon">💬</div><div class="ai-text"><div class="t">Priya Sharma — Vertex Corp</div><div class="s">"Loving the new homepage design! A few minor tweaks..."</div></div><div class="ai-time">20m</div></div>
@@ -435,7 +436,7 @@
       <!-- REPORTS SECTION -->
       <div class="dash-section" id="section-reports">
         <div class="panel">
-          <div class="panel-head"><h3>Generated Reports</h3><span class="action">+ New Report</span></div>
+          <a href="admin-error.html" class="panel-head"><h3>Generated Reports</h3><span class="action">+ New Report</span></a>
           <div class="table-wrap">
             <table>
               <thead><tr><th>Report Name</th><th>Type</th><th>Period</th><th>Generated</th><th>Action</th></tr></thead>
